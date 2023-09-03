@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { HeadingText } from "../common/Text";
 
 type WelcomeProps = {
   name: string;
@@ -13,8 +13,6 @@ export default function Welcome(props: WelcomeProps) {
   };
 
   return (
-    <Text
-      className={`text-2xl text-light-black ${className}`}
-    >{`${GreetingMessage()} ${name}`}</Text>
+    <HeadingText text={`${GreetingMessage()}, ${name}`} className={className} />
   );
 }

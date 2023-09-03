@@ -10,6 +10,7 @@ module.exports = {
       paper: "#F5F5DC",
       "light-paper": "#F7F0E1",
     },
+
     extend: {},
   },
   plugins: [],

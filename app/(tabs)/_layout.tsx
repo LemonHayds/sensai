@@ -1,8 +1,17 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
-
-import Colors from "../../constants/Colors";
+import { Pressable, useColorScheme, TouchableOpacity } from "react-native";
+import NavigatorBar from "../../components/core/NavigatorBar";
+import TextStyles from "../../constants/TextStyles";
+import {
+  HomeModernIcon,
+  ChartBarIcon,
+  CheckIcon,
+  PlusIcon,
+  RectangleStackIcon,
+  AdjustmentsHorizontalIcon,
+} from "react-native-heroicons/outline";
+const colors = require("../../constants/colors");
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -18,21 +27,37 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs>
+    <NavigatorBar>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: () => <HomeModernIcon color={colors.red} size={25} />,
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="tasks"
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <RectangleStackIcon color={colors.red} size={25} />
+          ),
         }}
       />
-    </Tabs>
+      <Tabs.Screen
+        name="performance"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <ChartBarIcon color={colors.red} size={25} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AdjustmentsHorizontalIcon color={colors.red} size={25} />
+          ),
+        }}
+      />
+    </NavigatorBar>
   );
 }

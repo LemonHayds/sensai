@@ -1,7 +1,9 @@
+import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -18,7 +20,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, error] = useFonts({
-    Ruwudu: require("../assets/fonts/Ruwudu.ttf"),
+    Optima: require("../assets/fonts/Optima.ttf"),
     Urbanist: require("../assets/fonts/Urbanist.ttf"),
   });
 
@@ -42,9 +44,11 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-    </Stack>
+    <SafeAreaView style={{ flex: 1 }} className="bg-light-paper">
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+      </Stack>
+    </SafeAreaView>
   );
 }

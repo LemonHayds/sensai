@@ -2,17 +2,20 @@ import { HeadingText } from "../common/Text";
 
 type WelcomeProps = {
   name: string;
-  className?: string;
+  customClassName?: string;
 };
 
 export default function Welcome(props: WelcomeProps) {
-  const { name, className } = props;
+  const { name, customClassName } = props;
 
   const GreetingMessage = () => {
     return "Good Morning";
   };
 
   return (
-    <HeadingText text={`${GreetingMessage()}, ${name}`} className={className} />
+    <HeadingText
+      text={`${GreetingMessage()}, ${name}`}
+      customClassName={`text-red-500 ${customClassName}`}
+    />
   );
 }

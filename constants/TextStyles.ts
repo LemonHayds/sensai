@@ -1,11 +1,15 @@
 export default {
   heading: {
     fontSize: 30,
-    fontFamily: "Ruwudu",
+    fontFamily: "Optima",
   },
   subheading: {
     fontSize: 20,
-    fontFamily: "Ruwudu",
+    fontFamily: "Optima",
+  },
+  title: {
+    fontSize: 18,
+    fontFamily: "Urbanist",
   },
   body: {
     fontSize: 16,

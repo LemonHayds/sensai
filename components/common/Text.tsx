@@ -6,7 +6,7 @@ type TextProps = {
   customClassName?: string;
 };
 
-const BaseTextClassNames = "flex-1 text-black dark:text-white";
+const BaseTextClassNames = "text-black dark:text-white";
 
 export const HeadingText = (props: TextProps) => {
   const { text, customClassName } = props;

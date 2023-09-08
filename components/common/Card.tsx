@@ -5,7 +5,7 @@ type CardProps = {
   customClassName?: string;
 };
 
-const CardClassNames = "shadow-lg bg-white rounded-md";
+const CardClassNames = "shadow bg-white rounded-xl";
 
 export const Card = (props: CardProps) => {
   const { children, customClassName } = props;

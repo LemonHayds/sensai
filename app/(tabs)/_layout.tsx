@@ -1,63 +1,130 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme, TouchableOpacity } from "react-native";
-import NavigatorBar from "../../components/core/NavigatorBar";
-import TextStyles from "../../constants/TextStyles";
+import { Tabs } from "expo-router";
+import { useState } from "react";
+import { useColorScheme, View } from "react-native";
 import {
-  HomeModernIcon,
-  ChartBarIcon,
-  CheckIcon,
-  PlusIcon,
-  RectangleStackIcon,
   AdjustmentsHorizontalIcon,
+  ChartBarIcon,
+  HomeIcon,
+  RectangleStackIcon,
 } from "react-native-heroicons/outline";
+import {
+  AdjustmentsHorizontalIcon as AdjustmentsHorizontalIconSolid,
+  ChartBarIcon as ChartBarIconSolid,
+  HomeIcon as HomeIconSolid,
+  RectangleStackIcon as RectangleStackIconSolid,
+} from "react-native-heroicons/solid";
+
+import TabContainer from "../../components/core/TabContainer";
+import AddButton from "../../components/core/AddButton";
+
 const colors = require("../../constants/colors");
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
 export default function TabLayout() {
+  const [addButtonOpened, setAddButtonOpened] = useState(false);
   const colorScheme = useColorScheme();
 
   return (
-    <NavigatorBar>
-      <Tabs.Screen
-        name="home"
-        options={{
-          tabBarIcon: () => <HomeModernIcon color={colors.red} size={25} />,
-        }}
-      />
-      <Tabs.Screen
-        name="tasks"
-        options={{
-          tabBarIcon: ({ color }) => (
-            <RectangleStackIcon color={colors.red} size={25} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="performance"
-        options={{
-          tabBarIcon: ({ color }) => (
-            <ChartBarIcon color={colors.red} size={25} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          tabBarIcon: ({ color }) => (
-            <AdjustmentsHorizontalIcon color={colors.red} size={25} />
-          ),
-        }}
-      />
-    </NavigatorBar>
+    <>
+      <TabContainer>
+        <Tabs.Screen
+          name="home"
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View className="absolute top-[50%]">
+                  {focused ? (
+                    <HomeIconSolid color={colors["light-red"]} size={26} />
+                  ) : (
+                    <HomeIcon color={"grey"} size={26} />
+                  )}
+                </View>
+              );
+            },
+          }}
+          listeners={{
+            tabPress: () => setAddButtonOpened(false),
+          }}
+        />
+        <Tabs.Screen
+          name="tasks"
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View className="absolute top-[50%]">
+                  {focused ? (
+                    <RectangleStackIconSolid
+                      color={colors["light-red"]}
+                      size={26}
+                    />
+                  ) : (
+                    <RectangleStackIcon color={"grey"} size={26} />
+                  )}
+                </View>
+              );
+            },
+          }}
+          listeners={{
+            tabPress: () => setAddButtonOpened(false),
+          }}
+        />
+        <Tabs.Screen
+          name="new-task"
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <AddButton
+                  opened={addButtonOpened}
+                  setOpened={setAddButtonOpened}
+                />
+              );
+            },
+          }}
+          listeners={{
+            tabPress: () => setAddButtonOpened(false),
+          }}
+        />
+        <Tabs.Screen
+          name="performance"
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View className="absolute top-[50%]">
+                  {focused ? (
+                    <ChartBarIconSolid color={colors["light-red"]} size={26} />
+                  ) : (
+                    <ChartBarIcon color={"grey"} size={26} />
+                  )}
+                </View>
+              );
+            },
+          }}
+          listeners={{
+            tabPress: () => setAddButtonOpened(false),
+          }}
+        />
+        <Tabs.Screen
+          name="settings"
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View className="absolute top-[50%]">
+                  {focused ? (
+                    <AdjustmentsHorizontalIconSolid
+                      color={colors["light-red"]}
+                      size={26}
+                    />
+                  ) : (
+                    <AdjustmentsHorizontalIcon color={"grey"} size={26} />
+                  )}
+                </View>
+              );
+            },
+          }}
+          listeners={{
+            tabPress: () => setAddButtonOpened(false),
+          }}
+        />
+      </TabContainer>
+    </>
   );
 }

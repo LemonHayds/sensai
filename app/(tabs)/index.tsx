@@ -3,7 +3,7 @@ import Welcome from "../../components/user/Welcome";
 import { View, Switch, SafeAreaView } from "react-native";
 import { useColorScheme } from "nativewind";
 import { Card } from "../../components/common/Card";
-import { HeadingText, SubHeadingText } from "../../components/common/Text";
+import { HeadingText, SubHeadingText } from "../../components/core/text";
 import { Text } from "react-native";
 import TextStyles from "../../constants/TextStyles";
 

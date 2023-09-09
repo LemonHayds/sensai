@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   red: "#7C191E",
   "light-red": "#9E2A22",
   black: "#111111",
@@ -7,5 +7,7 @@ const colors = {
   paper: "#F7F0E1",
   white: "#FFFFFF",
 };
+
+export default colors;
 
 module.exports = colors;

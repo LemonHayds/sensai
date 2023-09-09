@@ -1,4 +1,4 @@
-import { HeadingText } from "../common/Text";
+import { HeadingText } from "../core/text";
 
 type WelcomeProps = {
   name: string;

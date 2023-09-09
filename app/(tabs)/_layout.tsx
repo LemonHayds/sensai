@@ -14,12 +14,12 @@ import {
   RectangleStackIcon as RectangleStackIconSolid,
 } from "react-native-heroicons/solid";
 
-import TabContainer from "../../components/core/TabContainer";
-import AddButton from "../../components/core/AddButton";
+import TabContainer from "../../components/core/tab-container";
+import AddButton from "../../components/core/add-button";
 
 const colors = require("../../constants/colors");
 
-export default function TabLayout() {
+export default function Layout() {
   const [addButtonOpened, setAddButtonOpened] = useState(false);
   const colorScheme = useColorScheme();
 
@@ -27,7 +27,7 @@ export default function TabLayout() {
     <>
       <TabContainer>
         <Tabs.Screen
-          name="home"
+          name="index"
           options={{
             tabBarIcon: ({ focused }) => {
               return (

@@ -4,6 +4,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Redirect } from "expo-router";
 
 export {
   // Catch any errors thrown by the Layout component.

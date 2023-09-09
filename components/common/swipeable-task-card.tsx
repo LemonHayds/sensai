@@ -1,25 +1,25 @@
 import { View, TouchableWithoutFeedback } from "react-native";
 import { Text } from "react-native";
+import { BodyText, HeadingText, SubHeadingText } from "../core/text";
 
 export const SwipeableTaskCard = (props: SwipeableTaskCardProps) => {
   const SwipeableTaskCardClassNames =
-    "h-[300px] mb-2 shadow bg-white rounded-xl";
+    "min-h-[200px] p-4 shadow bg-white rounded-xl";
   const { task, setSelectedTask, customClassName } = props;
 
   return (
     <TouchableWithoutFeedback onPress={() => setSelectedTask(task)}>
       <View className={`${SwipeableTaskCardClassNames} ${customClassName}`}>
-        <View className="flex flex-row items-center">
-          <View className="flex flex-col">
-            <Text className="text-lg font-bold">{task.title}</Text>
-            <Text className="text-sm">{task.description}</Text>
+        <View className="flex-1 flex-col">
+          <View className="flex-row items-center">
+            <View className="flex-row items-center mr-2">{task.icon}</View>
+            <HeadingText text={task.title} />
           </View>
-          <View className="flex flex-col">
+
+          <View className="w-full p-4 bg-white">
+            <BodyText text={task.description} />
             <Text className="text-sm">{task.date}</Text>
             <Text className="text-sm">{task.time}</Text>
-          </View>
-          <View className="flex flex-col">
-            <Text className="text-sm">{task.icon}</Text>
           </View>
         </View>
       </View>

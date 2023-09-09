@@ -55,22 +55,27 @@ const AddButton = (props: AddButtonProps) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback onPress={() => setOpened(!opened)}>
-        <Animated.View
-          style={{
-            transform: [
-              {
-                rotate: animation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ["0deg", "45deg"],
-                }),
-              },
-            ],
-          }}
+        <View
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.30)" }}
+          className="shadow backdrop-blur-md w-[75px] h-[75px] flex-row items-center justify-center rounded-full"
         >
-          <View className="w-[55px] h-[55px] bg-light-red rounded-[100px] justify-center items-center mb-0">
-            <PlusIcon color={"white"} size={26} />
-          </View>
-        </Animated.View>
+          <Animated.View
+            style={{
+              transform: [
+                {
+                  rotate: animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ["0deg", "45deg"],
+                  }),
+                },
+              ],
+            }}
+          >
+            <View className="w-[60px] opacity-100 h-[60px] bg-light-red rounded-[100px] justify-center items-center mb-0">
+              <PlusIcon color={"white"} size={26} />
+            </View>
+          </Animated.View>
+        </View>
       </TouchableWithoutFeedback>
     </View>
   );

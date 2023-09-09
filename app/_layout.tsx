@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Redirect } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -45,11 +46,13 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <SafeAreaView style={{ flex: 1 }} className="bg-light-paper">
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-      </Stack>
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={{ flex: 1 }} className="bg-paper">
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        </Stack>
+      </SafeAreaView>
+    </>
   );
 }

@@ -17,7 +17,7 @@ import {
 import TabContainer from "../../components/core/tab-container";
 import AddButton from "../../components/core/add-button";
 
-const colors = require("../../constants/colors");
+import { colors } from "../../constants/colors";
 
 export default function Layout() {
   const [addButtonOpened, setAddButtonOpened] = useState(false);

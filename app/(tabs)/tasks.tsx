@@ -5,7 +5,7 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { XMarkIcon } from "react-native-heroicons/solid";
 
 import { HeadingText } from "../../components/common/text";
-import SwipeableTaskCard from "../../components/tasks/task-card";
+import TaskCard from "../../components/tasks/task-card";
 import { TaskType } from "../../components/tasks/task-card";
 import PageHeader from "../../components/common/page-header";
 
@@ -30,9 +30,12 @@ export default function Tasks() {
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View key={item.id}>
-                <SwipeableTaskCard
+                <TaskCard
                   task={item as TaskType}
                   setSelectedTask={setSelectedTask}
+                  customClassName={
+                    item.id === TempTasks.length ? "mb-[200px]" : ""
+                  }
                 />
               </View>
             )}
@@ -93,6 +96,16 @@ const TempTasks = [
   {
     id: 4,
     title: "Task 4",
+    description:
+      "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+    completed: false,
+    date: "2021-01-01",
+    time: "12:00",
+    icon: <Campfire weight="fill" size={25} />,
+  },
+  {
+    id: 5,
+    title: "Task 5",
     description:
       "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
     completed: false,

@@ -4,11 +4,13 @@ export default {
   },
   body: {
     fontFamily: "Ubuntu",
-    letterSpacing: 0.4,
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 18,
   },
   sensai: {
-    fontFamily: "Nikkou",
+    fontFamily: "Nikkyou",
+    fontSize: 16.5,
+    lineHeight: 25,
+    letterSpacing: 0.7,
   },
 };

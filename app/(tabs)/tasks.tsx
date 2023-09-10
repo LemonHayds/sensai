@@ -7,6 +7,7 @@ import { XMarkIcon } from "react-native-heroicons/solid";
 import { HeadingText } from "../../components/common/text";
 import SwipeableTaskCard from "../../components/tasks/swipeable-task-card";
 import { TaskType } from "../../components/tasks/swipeable-task-card";
+import PageHeader from "../../components/common/page-header";
 
 export default function Tasks() {
   const [selectedTask, setSelectedTask] = useState<TaskType | null>(null);
@@ -15,25 +16,20 @@ export default function Tasks() {
     <>
       <SafeAreaView />
       <View className="bg-light-paper">
+        <PageHeader type="date" />
         <FlatList
+          className="pt-4"
           showsVerticalScrollIndicator={false}
-          data={[{ id: "heading" }, ...TempTasks]}
+          data={TempTasks}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) =>
-            item.id === "heading" ? (
-              <View className="mx-4 mt-2">
-                <HeadingText text="Today" />
-                <HeadingText text="9th September" />
-              </View>
-            ) : (
-              <View key={item.id}>
-                <SwipeableTaskCard
-                  task={item as TaskType}
-                  setSelectedTask={setSelectedTask}
-                />
-              </View>
-            )
-          }
+          renderItem={({ item }) => (
+            <View key={item.id}>
+              <SwipeableTaskCard
+                task={item as TaskType}
+                setSelectedTask={setSelectedTask}
+              />
+            </View>
+          )}
           ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
         />
       </View>

@@ -25,7 +25,7 @@ export const SwipeableTaskCard = (props: SwipeableTaskCardProps) => {
                 </View>
               </GlassContainer>
               <View>
-                <HeadingText text={task.title} customClassName="text-2xl" />
+                <HeadingText text={task.title} customClassName="text-xl" />
                 <BodyText text={task.time} />
               </View>
             </View>

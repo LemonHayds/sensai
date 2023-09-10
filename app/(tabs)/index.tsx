@@ -1,5 +1,4 @@
-import ProfilePicture from "../../components/user/ProfilePicture";
-import Welcome from "../../components/user/Welcome";
+import ProfilePicture from "../../components/user/profile-pictuer";
 import { View } from "react-native";
 import { useColorScheme } from "nativewind";
 import { Card } from "../../components/common/card";

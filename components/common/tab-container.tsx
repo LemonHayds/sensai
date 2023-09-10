@@ -17,6 +17,7 @@ const TabContainer = (props: TabBarContainerProps) => {
           bottom: 0,
           height: 60,
           shadowColor: "#000",
+          paddingHorizontal: 5,
           shadowOpacity: 0.15,
           shadowOffset: {
             width: 2,

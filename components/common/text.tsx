@@ -25,7 +25,7 @@ export const BodyText = (props: TextProps) => {
   return (
     <Text
       className={`${BaseTextClassNames} ${customClassName}`}
-      style={{ ...TextStyles.body, fontWeight: "100" }}
+      style={{ ...TextStyles.body }}
     >
       {text}
     </Text>

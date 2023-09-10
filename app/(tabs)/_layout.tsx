@@ -5,13 +5,13 @@ import {
   AdjustmentsHorizontalIcon,
   ChartBarIcon,
   HomeIcon,
-  RectangleStackIcon,
+  CheckCircleIcon,
 } from "react-native-heroicons/outline";
 import {
   AdjustmentsHorizontalIcon as AdjustmentsHorizontalIconSolid,
   ChartBarIcon as ChartBarIconSolid,
   HomeIcon as HomeIconSolid,
-  RectangleStackIcon as RectangleStackIconSolid,
+  CheckCircleIcon as CheckCircleIconSolid,
 } from "react-native-heroicons/solid";
 import TabContainer from "../../components/common/tab-container";
 import AddButton from "../../components/common/add-button";
@@ -19,7 +19,7 @@ import colors from "../../constants/colors";
 
 export default function Layout() {
   const [addButtonOpened, setAddButtonOpened] = useState(false);
-  const colorScheme = useColorScheme();
+  // const colorScheme = useColorScheme();
 
   return (
     <>
@@ -50,12 +50,12 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <RectangleStackIconSolid
+                    <CheckCircleIconSolid
                       color={colors["light-red"]}
                       size={26}
                     />
                   ) : (
-                    <RectangleStackIcon color={"grey"} size={26} />
+                    <CheckCircleIcon color={"grey"} size={26} />
                   )}
                 </View>
               );

@@ -36,7 +36,7 @@ const AddButton = (props: AddButtonProps) => {
             ...transformAnimation(animation, "left"),
           }}
         >
-          <View className="absolute left-[4px] top-[4px] w-[50px] h-[50px] bg-light-red rounded-[100px] justify-center items-center mb-0">
+          <View className="absolute left-[4px] top-[4px] w-[50px] h-[50px] bg-light-red/90 border-2 shadow-xl border-white/80 rounded-[100px] justify-center items-center mb-0">
             <PencilIcon color={"white"} size={20} />
           </View>
         </Animated.View>
@@ -48,7 +48,7 @@ const AddButton = (props: AddButtonProps) => {
             ...transformAnimation(animation, "right"),
           }}
         >
-          <View className="absolute right-[4px] top-[4px] w-[50px] h-[50px] bg-light-red rounded-[100px] justify-center items-center mb-0">
+          <View className="absolute right-[4px] top-[4px] w-[50px] h-[50px] bg-light-red/90 border-2 shadow-xl border-white/80 rounded-[100px] justify-center items-center mb-0">
             <EyeIcon color={"white"} size={20} />
           </View>
         </Animated.View>

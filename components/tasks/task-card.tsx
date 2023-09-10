@@ -24,9 +24,9 @@ export const SwipeableTaskCard = (props: SwipeableTaskCardProps) => {
                   {task.icon}
                 </View>
               </GlassContainer>
-              <View>
+              <View className="flex-col justify-center items-start">
                 <HeadingText text={task.title} customClassName="text-xl" />
-                <BodyText text={task.time} />
+                <BodyText text={`${task.time} pm`} />
               </View>
             </View>
 

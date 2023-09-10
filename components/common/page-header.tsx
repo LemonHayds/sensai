@@ -1,17 +1,21 @@
+import { useState } from "react";
+import { View } from "react-native";
 import { HeadingText, SensaiText } from "./text";
 import SensaiTextContainer from "./sensai-text-container";
-import { View } from "react-native";
 import ProfilePicture from "../user/profile-pictuer";
+import ViewSwitcher from "../tasks/view-switcher";
 
 type PageHeaderProps = {
   type: "welcome" | "date";
   user?: any;
   profileSize?: number;
-  customClassName?: string;
+  selectedView: "list" | "stack";
+  setSelectedView: (view: "list" | "stack") => void;
 };
 
 export default function PageHeader(props: PageHeaderProps) {
-  const { type = "welcome", profileSize = 50, user, customClassName } = props;
+  const { type = "welcome", user, profileSize = 40 } = props;
+  const [selectedView, setSelectedView] = useState<"list" | "stack">("list");
 
   switch (type) {
     case "welcome":
@@ -41,8 +45,12 @@ export default function PageHeader(props: PageHeaderProps) {
                 />
               </SensaiTextContainer>
             </View>
-            <View>
+            <View className="flex-col justify-between items-end">
               <ProfilePicture width={profileSize} height={profileSize} />
+              <ViewSwitcher
+                selectedView={selectedView}
+                setSelectedView={setSelectedView}
+              />
             </View>
           </View>
           <View className="bg-light-red absolute bottom-[-1px] left-0 h-[3px] w-[100px]"></View>

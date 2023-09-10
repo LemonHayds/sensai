@@ -5,33 +5,42 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { XMarkIcon } from "react-native-heroicons/solid";
 
 import { HeadingText } from "../../components/common/text";
-import SwipeableTaskCard from "../../components/tasks/swipeable-task-card";
-import { TaskType } from "../../components/tasks/swipeable-task-card";
+import SwipeableTaskCard from "../../components/tasks/task-card";
+import { TaskType } from "../../components/tasks/task-card";
 import PageHeader from "../../components/common/page-header";
 
 export default function Tasks() {
   const [selectedTask, setSelectedTask] = useState<TaskType | null>(null);
+  const [selectedView, setSelectedView] = useState<"list" | "stack">("list");
 
   return (
     <>
       <SafeAreaView />
       <View className="bg-light-paper">
-        <PageHeader type="date" />
-        <FlatList
-          className="pt-4"
-          showsVerticalScrollIndicator={false}
-          data={TempTasks}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View key={item.id}>
-              <SwipeableTaskCard
-                task={item as TaskType}
-                setSelectedTask={setSelectedTask}
-              />
-            </View>
-          )}
-          ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
+        <PageHeader
+          type="date"
+          selectedView={selectedView}
+          setSelectedView={setSelectedView}
         />
+        {selectedView === "list" ? (
+          <FlatList
+            className="pt-4"
+            showsVerticalScrollIndicator={false}
+            data={TempTasks}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View key={item.id}>
+                <SwipeableTaskCard
+                  task={item as TaskType}
+                  setSelectedTask={setSelectedTask}
+                />
+              </View>
+            )}
+            ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
+          />
+        ) : (
+          <HeadingText text="Stack View" />
+        )}
       </View>
       {selectedTask && (
         <View className="absolute top-0 bg-paper w-full h-full">

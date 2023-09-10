@@ -1,34 +1,29 @@
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
-} from "react-native";
-import SwipeableTaskCard from "../../components/common/swipeable-task-card";
-import { HeadingText, SubHeadingText } from "../../components/core/text";
-import { TaskType } from "../../components/common/swipeable-task-card";
-import { useState } from "react";
+import { Alien, Campfire, Code, YinYang } from "phosphor-react-native";
+import { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { XMarkIcon } from "react-native-heroicons/solid";
-import { Alien, Campfire, Code, YinYang } from "phosphor-react-native";
+
+import { HeadingText } from "../../components/common/text";
+import SwipeableTaskCard from "../../components/tasks/swipeable-task-card";
+import { TaskType } from "../../components/tasks/swipeable-task-card";
 
 export default function Tasks() {
   const [selectedTask, setSelectedTask] = useState<TaskType | null>(null);
-  const taskData = TempTasks;
+
   return (
     <>
       <SafeAreaView />
-      <View className="bg-light-paper px-4 pb-6">
+      <View className="bg-light-paper">
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={[{ id: "heading" }, ...taskData]}
+          data={[{ id: "heading" }, ...TempTasks]}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) =>
             item.id === "heading" ? (
-              <View className="mb-2">
-                <HeadingText text={"Today"} />
-                <SubHeadingText text="9th September" />
+              <View className="mx-4 mt-2">
+                <HeadingText text="Today" />
+                <HeadingText text="9th September" />
               </View>
             ) : (
               <View key={item.id}>
@@ -39,7 +34,7 @@ export default function Tasks() {
               </View>
             )
           }
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
         />
       </View>
       {selectedTask && (
@@ -59,46 +54,45 @@ export default function Tasks() {
   );
 }
 
-type HeadingTextType = {
-  id: string;
-  text: string;
-};
-
 const TempTasks = [
   {
     id: 1,
     title: "Meditate",
-    description: "This is a task",
+    description:
+      "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
     completed: false,
     date: "2021-01-01",
     time: "12:00",
-    icon: <YinYang weight="fill" size={33} />,
+    icon: <YinYang weight="fill" size={25} />,
   },
   {
     id: 2,
     title: "Learn NextJS",
-    description: "This is a task",
+    description:
+      "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
     completed: false,
     date: "2021-01-01",
     time: "12:00",
-    icon: <Code weight="fill" size={33} />,
+    icon: <Code weight="fill" size={25} />,
   },
   {
     id: 3,
     title: "Practive React Native",
-    description: "This is a task",
+    description:
+      "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
     completed: false,
     date: "2021-01-01",
     time: "12:00",
-    icon: <Alien weight="fill" size={33} />,
+    icon: <Alien weight="fill" size={25} />,
   },
   {
     id: 4,
     title: "Task 4",
-    description: "This is a task",
+    description:
+      "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
     completed: false,
     date: "2021-01-01",
     time: "12:00",
-    icon: <Campfire weight="fill" size={33} />,
+    icon: <Campfire weight="fill" size={25} />,
   },
 ];

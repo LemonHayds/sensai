@@ -1,11 +1,9 @@
 import ProfilePicture from "../../components/user/ProfilePicture";
 import Welcome from "../../components/user/Welcome";
-import { View, Switch, SafeAreaView } from "react-native";
+import { View } from "react-native";
 import { useColorScheme } from "nativewind";
 import { Card } from "../../components/common/card";
-import { HeadingText, SubHeadingText } from "../../components/core/text";
-import { Text } from "react-native";
-import TextStyles from "../../constants/TextStyles";
+import { HeadingText } from "../../components/common/text";
 
 export default function Home() {
   const { colorScheme, toggleColorScheme } = useColorScheme();
@@ -19,7 +17,7 @@ export default function Home() {
         </View>
       </View>
       <View className="my-2">
-        <SubHeadingText text="Summary" />
+        <HeadingText text="Summary" />
         <View className="flex-row">
           <Card customClassName="my-2 w-full h-[200px]"></Card>
           <Card customClassName="my-2 w-full h-[200px]"></Card>
@@ -27,7 +25,7 @@ export default function Home() {
         <Card customClassName="my-2 w-full h-[200px]"></Card>
       </View>
       <View>
-        <SubHeadingText text="Your tasks" />
+        <HeadingText text="Your tasks" customClassName="text-lg" />
         <Card customClassName="my-2 w-full h-[50px]"></Card>
       </View>
     </View>

@@ -1,5 +1,5 @@
+const colors = require("../../constants/colors");
 import { Tabs } from "expo-router";
-import { colors } from "../../constants/colors";
 
 type TabBarContainerProps = {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const TabContainer = (props: TabBarContainerProps) => {
     <Tabs
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: colors.paper,
+          backgroundColor: colors["paper"],
           position: "absolute",
           bottom: 0,
           height: 60,

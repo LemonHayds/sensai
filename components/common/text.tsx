@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import TextStyles from "../../constants/TextStyles";
+import TextStyles from "../../constants/text-styles";
 
 type TextProps = {
   text: string;
@@ -20,36 +20,24 @@ export const HeadingText = (props: TextProps) => {
   );
 };
 
-export const SubHeadingText = (props: TextProps) => {
-  const { text, customClassName } = props;
-  return (
-    <Text
-      className={`${BaseTextClassNames} ${customClassName}`}
-      style={{ ...TextStyles.subheading }}
-    >
-      {text}
-    </Text>
-  );
-};
-
-export const TitleText = (props: TextProps) => {
-  const { text, customClassName } = props;
-  return (
-    <Text
-      className={`${BaseTextClassNames} ${customClassName}`}
-      style={{ ...TextStyles.title }}
-    >
-      {text}
-    </Text>
-  );
-};
-
 export const BodyText = (props: TextProps) => {
   const { text, customClassName } = props;
   return (
     <Text
       className={`${BaseTextClassNames} ${customClassName}`}
-      style={{ ...TextStyles.body }}
+      style={{ ...TextStyles.body, fontWeight: "100" }}
+    >
+      {text}
+    </Text>
+  );
+};
+
+export const SensaiText = (props: TextProps) => {
+  const { text, customClassName } = props;
+  return (
+    <Text
+      className={`${BaseTextClassNames} ${customClassName}`}
+      style={{ ...TextStyles.sensai }}
     >
       {text}
     </Text>

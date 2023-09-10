@@ -1,4 +1,4 @@
-export const colors = {
+module.exports = {
   red: "#7C191E",
   "light-red": "#ea2028",
   black: "#111111",

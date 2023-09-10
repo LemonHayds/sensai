@@ -1,11 +1,7 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
-import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Redirect } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -22,8 +18,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, error] = useFonts({
-    Optima: require("../assets/fonts/Optima.ttf"),
-    Urbanist: require("../assets/fonts/Urbanist.ttf"),
+    Quando: require("../assets/fonts/Quando.ttf"),
+    Ubuntu: require("../assets/fonts/Ubuntu.ttf"),
+    Nikkyou: require("../assets/fonts/Nikkyou.ttf"),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.

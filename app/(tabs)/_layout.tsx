@@ -13,11 +13,9 @@ import {
   HomeIcon as HomeIconSolid,
   RectangleStackIcon as RectangleStackIconSolid,
 } from "react-native-heroicons/solid";
-
-import TabContainer from "../../components/core/tab-container";
-import AddButton from "../../components/core/add-button";
-
-import { colors } from "../../constants/colors";
+import TabContainer from "../../components/common/tab-container";
+import AddButton from "../../components/common/add-button";
+import colors from "../../constants/colors";
 
 export default function Layout() {
   const [addButtonOpened, setAddButtonOpened] = useState(false);

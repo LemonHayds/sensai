@@ -1,18 +1,34 @@
 import { useState } from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
-import { Card } from "../common/card";
-import { BodyText, HeadingText } from "../common/text";
-import GlassContainer from "../common/glass-container";
-import BorderedButton from "../common/bordered-button";
 import { CheckIcon } from "react-native-heroicons/mini";
 
+import BorderedButton from "../common/bordered-button";
+import { Card } from "../common/card";
+import GlassContainer from "../common/glass-container";
+import { BodyText, HeadingText } from "../common/text";
+
 export const TaskCard = (props: TaskCardProps) => {
-  const TaskCardClassNames = "bg-paper min-h-[200px] px-4 py-4";
-  const { task, setSelectedTask, customClassName } = props;
+  const TaskCardClassNames = "bg-paper px-4 py-4";
+  const {
+    task,
+    setSelectedTask,
+    completedTasksCount,
+    setCompletedTasksCount,
+    customClassName,
+  } = props;
   const [complete, setComplete] = useState(false);
 
   const handleTaskComplete = () => {
-    setComplete(!complete);
+    setComplete((prevComplete: boolean) => {
+      const isComplete = !prevComplete;
+      const updatedCount = isComplete
+        ? completedTasksCount + 1
+        : completedTasksCount - 1;
+
+      setCompletedTasksCount(updatedCount);
+
+      return isComplete;
+    });
   };
 
   return (
@@ -23,8 +39,8 @@ export const TaskCard = (props: TaskCardProps) => {
     >
       <View>
         <Card
-          customClassName={`border-[1px] ${
-            complete ? "border-black/30 shadow-sm" : "border-white/90"
+          customClassName={`border-[1px] shadow-sm ${
+            complete ? "border-black/30" : "border-white/90"
           } ${TaskCardClassNames} ${customClassName}`}
         >
           <View className="flex-1 flex-col">
@@ -54,9 +70,9 @@ export const TaskCard = (props: TaskCardProps) => {
               </View>
             </View>
 
-            <View className="w-full mt-2">
+            {/* <View className="w-full my-auto">
               <BodyText text={task.description} />
-            </View>
+            </View> */}
           </View>
         </Card>
       </View>
@@ -69,6 +85,8 @@ export default TaskCard;
 type TaskCardProps = {
   setSelectedTask: (task: TaskType | null) => void;
   task: TaskType;
+  completedTasksCount: number;
+  setCompletedTasksCount: (count: number) => void;
   customClassName?: string;
 };
 

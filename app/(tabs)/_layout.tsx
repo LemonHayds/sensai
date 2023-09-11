@@ -31,7 +31,7 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <HomeIconSolid color={colors["light-red"]} size={26} />
+                    <HomeIconSolid color={"black"} size={26} />
                   ) : (
                     <HomeIcon color={"grey"} size={26} />
                   )}
@@ -50,10 +50,7 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <CheckCircleIconSolid
-                      color={colors["light-red"]}
-                      size={26}
-                    />
+                    <CheckCircleIconSolid color={"black"} size={26} />
                   ) : (
                     <CheckCircleIcon color={"grey"} size={26} />
                   )}
@@ -88,7 +85,7 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <ChartBarIconSolid color={colors["light-red"]} size={26} />
+                    <ChartBarIconSolid color={"black"} size={26} />
                   ) : (
                     <ChartBarIcon color={"grey"} size={26} />
                   )}
@@ -107,10 +104,7 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <AdjustmentsHorizontalIconSolid
-                      color={colors["light-red"]}
-                      size={26}
-                    />
+                    <AdjustmentsHorizontalIconSolid color={"black"} size={26} />
                   ) : (
                     <AdjustmentsHorizontalIcon color={"grey"} size={26} />
                   )}

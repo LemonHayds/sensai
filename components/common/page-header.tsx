@@ -1,20 +1,30 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { HeadingText, SensaiText } from "./text";
-import SensaiTextContainer from "./sensai-text-container";
-import ProfilePicture from "../user/profile-pictuer";
+
+import TaskHeaderIndicator from "../tasks/task-header-indicator";
 import ViewSwitcher from "../tasks/view-switcher";
+import ProfilePicture from "../user/profile-pictuer";
+import SensaiTextContainer from "./sensai-text-container";
+import { HeadingText, SensaiText } from "./text";
 
 type PageHeaderProps = {
   type: "welcome" | "date";
   user?: any;
   profileSize?: number;
   selectedView: "list" | "stack";
+  taskLength?: number;
+  completedTasksLength?: number;
   setSelectedView: (view: "list" | "stack") => void;
 };
 
 export default function PageHeader(props: PageHeaderProps) {
-  const { type = "welcome", user, profileSize = 40 } = props;
+  const {
+    type = "welcome",
+    user,
+    taskLength,
+    completedTasksLength,
+    profileSize = 40,
+  } = props;
   const [selectedView, setSelectedView] = useState<"list" | "stack">("list");
 
   switch (type) {
@@ -31,8 +41,8 @@ export default function PageHeader(props: PageHeaderProps) {
       });
 
       return (
-        <View className="relative bg-paper shadow-sm px-4 pb-4 border-b border-white">
-          <View className="flex-row justify-between">
+        <View className="relative bg-paper shadow-sm pb-4 border-b border-white">
+          <View className="flex-row justify-between px-4">
             <View>
               <HeadingText
                 text={`Today`}
@@ -53,7 +63,10 @@ export default function PageHeader(props: PageHeaderProps) {
               />
             </View>
           </View>
-          <View className="bg-light-red absolute bottom-[-1px] left-0 h-[3px] w-[100px]"></View>
+          <TaskHeaderIndicator
+            tasksLength={taskLength}
+            completedTasksLength={completedTasksLength}
+          />
         </View>
       );
   }

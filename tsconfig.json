@@ -8,7 +8,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "constants/colors.js",
+    "constants/styles/colors.js",
     "constants/text-styles.js"
   ]
 }

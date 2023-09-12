@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { useState } from "react";
-import { useColorScheme, View } from "react-native";
+import { Switch, useColorScheme, View } from "react-native";
 import {
   AdjustmentsHorizontalIcon,
   ChartBarIcon,
@@ -15,11 +15,9 @@ import {
 } from "react-native-heroicons/solid";
 import TabContainer from "../../components/common/tab-container";
 import AddButton from "../../components/common/add-button";
-import colors from "../../constants/colors";
 
 export default function Layout() {
   const [addButtonOpened, setAddButtonOpened] = useState(false);
-  // const colorScheme = useColorScheme();
 
   return (
     <>

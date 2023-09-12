@@ -16,7 +16,7 @@ export default function TaskDetail(props: TaskDetailProps) {
   return (
     <View className="absolute top-0 bg-paper w-full h-full">
       <View className="relative">
-        <View className="flex-row p-2 flex items-center justify-between">
+        <View className="flex-row p-2 flex justify-between">
           <HeadingText text={selectedTask?.title} customClassName="text-4xl" />
           <BorderedButton
             onPress={handleClose}
@@ -28,7 +28,10 @@ export default function TaskDetail(props: TaskDetailProps) {
           </BorderedButton>
         </View>
         <View className="px-3 text-xl">
-          <BodyText text={selectedTask?.description} customClassName="" />
+          <BodyText
+            text={selectedTask?.description}
+            additionalStyles={{ fontSize: 16, lineHeight: 20 }}
+          />
         </View>
       </View>
     </View>

@@ -1,9 +1,9 @@
-import { Text, View } from "react-native";
-
-import TextStyles from "../../constants/text-styles";
+import { Text } from "react-native";
+import TextStyles from "../../constants/styles/text-styles";
 
 type TextProps = {
   text?: string;
+  additionalStyles?: any;
   customClassName?: string;
 };
 
@@ -22,11 +22,11 @@ export const HeadingText = (props: TextProps) => {
 };
 
 export const BodyText = (props: TextProps) => {
-  const { text, customClassName } = props;
+  const { text, additionalStyles, customClassName } = props;
   return (
     <Text
       className={`${BaseTextClassNames} ${customClassName}`}
-      style={{ ...TextStyles.body }}
+      style={{ ...TextStyles.body, ...additionalStyles }}
     >
       {text}
     </Text>

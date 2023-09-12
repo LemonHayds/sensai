@@ -1,4 +1,4 @@
-const colors = require("../../constants/colors");
+const colors = require("../../constants/styles/colors");
 import { Tabs } from "expo-router";
 
 type TabBarContainerProps = {

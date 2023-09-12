@@ -2,6 +2,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 
 export {
   // Catch any errors thrown by the Layout component.

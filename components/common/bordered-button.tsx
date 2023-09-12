@@ -1,15 +1,26 @@
 import { useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 const BorderedButton = (props: BorderedButtonProps) => {
-  const { parentColor, onPress, children, customClassName } = props;
+  const {
+    parentColor = "bg-paper",
+    onPress,
+    children,
+    customClassName,
+    filledBorder = false,
+    transparentButton = false,
+  } = props;
   const [pressed, setPressed] = useState(false);
 
   return (
     <>
       <TouchableOpacity
         className={`rounded-lg relative flex items-center justify-center border-[1px] ${
-          pressed ? "border-black/60" : "border-black/40"
+          filledBorder
+            ? "border-black"
+            : pressed
+            ? "border-black/60"
+            : "border-black/40"
         } ${customClassName}`}
         onPress={() => {
           setPressed(!pressed);
@@ -18,7 +29,7 @@ const BorderedButton = (props: BorderedButtonProps) => {
       >
         <View
           className={`rounded-md p-[8px] m-[5px] ${
-            pressed ? "bg-black" : "bg-black/50"
+            transparentButton ? "" : pressed ? "bg-black" : "bg-black/50"
           }`}
         >
           {children}
@@ -46,5 +57,7 @@ type BorderedButtonProps = {
   parentColor?: string;
   onPress: () => void;
   children: React.ReactNode;
+  transparentButton?: boolean;
+  filledBorder?: boolean;
   customClassName?: string;
 };

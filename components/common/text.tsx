@@ -1,8 +1,9 @@
 import { Text, View } from "react-native";
+
 import TextStyles from "../../constants/text-styles";
 
 type TextProps = {
-  text: string;
+  text?: string;
   customClassName?: string;
 };
 

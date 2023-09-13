@@ -2,7 +2,6 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -48,7 +47,14 @@ function RootLayoutNav() {
       <SafeAreaView style={{ flex: 1 }} className="bg-paper">
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          <Stack.Screen
+            name="task-detail"
+            options={{
+              headerShown: false,
+              presentation: "transparentModal",
+              animation: "fade",
+            }}
+          />
         </Stack>
       </SafeAreaView>
     </>

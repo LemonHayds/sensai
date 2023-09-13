@@ -13,6 +13,7 @@ import PageHeader from "../../components/common/page-header";
 import { HeadingText } from "../../components/common/text";
 import TaskCard from "../../components/tasks/task-card";
 import { TaskType } from "../../components/tasks/task-card";
+import { Link } from "expo-router";
 
 export default function TaskList(props: TaskListProps) {
   const { selectedTask, setSelectedTask } = props;

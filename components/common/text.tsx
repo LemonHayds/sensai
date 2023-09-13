@@ -1,5 +1,5 @@
 import { Text } from "react-native";
-import TextStyles from "../../constants/styles/text-styles";
+import TextStyles from "../../constants/styles/text.styles";
 
 type TextProps = {
   text?: string;

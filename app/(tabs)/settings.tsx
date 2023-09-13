@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import { HeadingText } from "../../components/common/text";
-import { settings } from "../../constants/configs/settings";
+import { settings } from "../../constants/configs/settings.config";
 import { FlatList } from "react-native-gesture-handler";
 import { useColorScheme } from "react-native";
 import { useState } from "react";

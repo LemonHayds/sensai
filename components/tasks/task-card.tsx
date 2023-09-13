@@ -6,6 +6,8 @@ import BorderedButton from "../common/bordered-button";
 import { Card } from "../common/card";
 import GlassContainer from "../common/glass-container";
 import { BodyText, HeadingText } from "../common/text";
+import { useRouter, useLocalSearchParams } from "expo-router";
+import Animated from "react-native-reanimated";
 
 export const TaskCard = (props: TaskCardProps) => {
   const TaskCardClassNames = "bg-paper px-4 py-4";
@@ -17,6 +19,8 @@ export const TaskCard = (props: TaskCardProps) => {
     customClassName,
   } = props;
   const [complete, setComplete] = useState(false);
+  const params = useLocalSearchParams;
+  const router = useRouter();
 
   const handleTaskComplete = () => {
     setComplete((prevComplete: boolean) => {
@@ -35,44 +39,37 @@ export const TaskCard = (props: TaskCardProps) => {
     <TouchableWithoutFeedback
       onPress={() => {
         setSelectedTask(task);
+        router.push("/task-detail");
       }}
     >
-      <View>
+      <View className="flex-1">
         <Card
           customClassName={`border-[1px] shadow-sm ${
             complete ? "border-black/30" : "border-white/90"
           } ${TaskCardClassNames} ${customClassName}`}
         >
-          <View className="flex-1 flex-col">
-            <View className="flex-row justify-between">
-              <View className="flex-row items-center">
+          <View className="flex-row justify-between">
+            <View className="flex-row items-center">
+              <Animated.View sharedTransitionTag="selectedTaskIcon">
                 <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
-                  <View className="flex-row items-center opacity-100">
-                    {task.icon}
-                  </View>
+                  <View className="flex-row items-center">{task.icon}</View>
                 </GlassContainer>
-                <View className="flex-col justify-start items-start">
-                  <HeadingText
-                    text={task.title}
-                    customClassName="text-[16px]"
-                  />
-                  <BodyText text={`${task.time} pm`} />
-                </View>
-              </View>
+              </Animated.View>
 
-              <View>
-                <BorderedButton
-                  onPress={() => handleTaskComplete()}
-                  parentColor="bg-paper"
-                >
-                  <CheckIcon color={"white"} size={15} />
-                </BorderedButton>
+              <View className="flex-col justify-start items-start">
+                <HeadingText text={task.title} customClassName="text-[16px]" />
+                <BodyText text={`${task.time} pm`} />
               </View>
             </View>
 
-            {/* <View className="w-full my-auto">
-              <BodyText text={task.description} />
-            </View> */}
+            <View>
+              <BorderedButton
+                onPress={() => handleTaskComplete()}
+                parentColor="bg-paper"
+              >
+                <CheckIcon color={"white"} size={15} />
+              </BorderedButton>
+            </View>
           </View>
         </Card>
       </View>

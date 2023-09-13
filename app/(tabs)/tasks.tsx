@@ -10,12 +10,6 @@ export default function Tasks() {
   return (
     <>
       <TaskList selectedTask={selectedTask} setSelectedTask={setSelectedTask} />
-      {selectedTask && (
-        <TaskDetail
-          selectedTask={selectedTask}
-          setSelectedTask={setSelectedTask}
-        />
-      )}
     </>
   );
 }

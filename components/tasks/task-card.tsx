@@ -50,7 +50,7 @@ export const TaskCard = (props: TaskCardProps) => {
         >
           <View className="flex-row justify-between">
             <View className="flex-row items-center">
-              <Animated.View sharedTransitionTag="selectedTaskIcon">
+              <Animated.View sharedTransitionTag={`task.${task.id}.icon`}>
                 <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
                   <View className="flex-row items-center">{task.icon}</View>
                 </GlassContainer>

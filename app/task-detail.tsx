@@ -22,7 +22,7 @@ export default function TaskDetail(props: TaskDetailProps) {
   return (
     <SafeAreaView className="bg-paper flex-1">
       <View className="flex-row p-2 flex justify-between">
-        <Animated.View sharedTransitionTag="selectedTaskIcon">
+        <Animated.View sharedTransitionTag={`task.icon`}>
           <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
             <View className="flex-row items-center">
               <YinYang color="black" weight="fill" />

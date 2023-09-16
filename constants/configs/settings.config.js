@@ -1,22 +1,42 @@
-export const settings = [
+export const settingsConfig = [
   {
-    name: "Theme",
+    key: "dark-mode",
+    label: "Dark Mode",
     type: "toggle",
+    default: false,
   },
   {
-    name: "Font Style",
-    type: "toggle",
+    key: "font-style",
+    label: "Font Style",
+    type: "select",
+    default: "default",
+    selectItems: [
+      {
+        label: "Default",
+        value: "default",
+      },
+      {
+        label: "Modern",
+        value: "modern",
+      },
+    ],
   },
   {
-    name: "Favourite Color",
+    key: "favourite-color",
+    label: "Favourite Color",
     type: "colorPicker",
+    default: "#7C191E",
   },
   {
-    name: "Notifications",
+    key: "notifications-enabled",
+    label: "Notifications",
     type: "toggle",
+    default: true,
   },
   {
-    name: "Haptic Feedback",
+    key: "haptic-feedback",
+    label: "Haptic Feedback",
     type: "toggle",
+    default: true,
   },
 ];

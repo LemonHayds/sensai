@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 import {
   AdjustmentsHorizontalIcon,
@@ -13,11 +13,42 @@ import {
   HomeIcon as HomeIconSolid,
   CheckCircleIcon as CheckCircleIconSolid,
 } from "react-native-heroicons/solid";
+
+//Settings
+import {
+  getSettings,
+  initiateSettings,
+  mergeConfigWithStoredSettings,
+} from "../../utils/settings.utils";
+import { settingsConfig } from "../../constants/configs/settings.config";
+
+//OTHER HERE
+
 import TabContainer from "../../components/common/tab-container";
 import AddButton from "../../components/common/add-button";
 
 export default function Layout() {
+  const [settingsState, setSettingsState] = useState(["test"]);
   const [addButtonOpened, setAddButtonOpened] = useState(false);
+
+  useEffect(() => {
+    //SETTINGS
+    async function fetchSettings() {
+      let storedSettings = await getSettings();
+      console.log("storedSettings", storedSettings);
+
+      if (!storedSettings || Object.keys(storedSettings).length === 0) {
+        await initiateSettings();
+        storedSettings = await getSettings();
+      }
+      const mergedSettings = mergeConfigWithStoredSettings({
+        settingsConfig: settingsConfig,
+        storedSettings,
+      });
+      return setSettingsState(mergedSettings);
+    }
+    fetchSettings();
+  }, []);
 
   return (
     <>
@@ -97,6 +128,7 @@ export default function Layout() {
         />
         <Tabs.Screen
           name="settings"
+          //pass props to settings
           options={{
             tabBarIcon: ({ focused }) => {
               return (
@@ -113,6 +145,7 @@ export default function Layout() {
           listeners={{
             tabPress: () => setAddButtonOpened(false),
           }}
+          initialParams={{ settingsState, setSettingsState }}
         />
       </TabContainer>
     </>

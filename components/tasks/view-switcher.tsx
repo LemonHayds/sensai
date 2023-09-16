@@ -4,6 +4,7 @@ import {
   RectangleStackIcon,
 } from "react-native-heroicons/outline";
 import { useColorScheme } from "nativewind";
+import GlobalClasses from "../../constants/styles/global.classes";
 
 export const ViewSwitcher = (props: ViewSwitcherProps) => {
   const { selectedView, setSelectedView, customClassName } = props;
@@ -15,7 +16,7 @@ export const ViewSwitcher = (props: ViewSwitcherProps) => {
     >
       <TouchableWithoutFeedback onPress={() => setSelectedView("stack")}>
         <View
-          className={`mx-6 ${
+          className={`mx-6 flex-col space-y-2 justify-center items-center ${
             selectedView === "stack" ? "opacity-100" : "opacity-30"
           }`}
         >
@@ -23,18 +24,29 @@ export const ViewSwitcher = (props: ViewSwitcherProps) => {
             color={colorScheme === "dark" ? "white" : "black"}
             size={24}
           />
+          <View
+            className={`w-[3px] h-[3px] rounded-full ${
+              selectedView === "stack" ? "opactity-100" : "opacity-0"
+            }
+            ${GlobalClasses["general-color"]}`}
+          />
         </View>
       </TouchableWithoutFeedback>
-      <View className="border-[0.5px] h-full border-black" />
       <TouchableWithoutFeedback onPress={() => setSelectedView("list")}>
         <View
-          className={`mx-6 ${
+          className={`mx-6 flex-col space-y-2 justify-center items-center ${
             selectedView === "list" ? "opacity-100" : "opacity-30"
           }`}
         >
           <ListBulletIcon
             color={colorScheme === "dark" ? "white" : "black"}
             size={24}
+          />
+          <View
+            className={`w-[3px] h-[3px] rounded-full 
+            ${selectedView === "list" ? "opactity-100" : "opacity-0"}
+            ${GlobalClasses["general-color"]}
+            `}
           />
         </View>
       </TouchableWithoutFeedback>

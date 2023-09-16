@@ -6,7 +6,7 @@ import BorderedButton from "../common/bordered-button";
 import { Card } from "../common/card";
 import GlassContainer from "../common/glass-container";
 import { BodyText, HeadingText } from "../common/text";
-import { useRouter, useLocalSearchParams } from "expo-router";
+import { useRouter } from "expo-router";
 import Animated from "react-native-reanimated";
 import GlobalClasses from "../../constants/styles/global.classes";
 

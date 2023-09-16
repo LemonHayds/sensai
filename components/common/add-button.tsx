@@ -55,10 +55,7 @@ const AddButton = (props: AddButtonProps) => {
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback onPress={() => setOpened(!opened)}>
-        <View
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.30)" }}
-          className="shadow backdrop-blur-md w-[75px] h-[75px] flex-row items-center justify-center rounded-full"
-        >
+        <View className="shadow bg-white/10 backdrop-blur-md w-[75px] h-[75px] flex-row items-center justify-center rounded-full">
           <Animated.View
             style={{
               transform: [
@@ -71,7 +68,7 @@ const AddButton = (props: AddButtonProps) => {
               ],
             }}
           >
-            <View className="w-[60px] opacity-100 h-[60px] bg-light-red rounded-[100px] justify-center items-center mb-0">
+            <View className="w-[60px] opacity-100 h-[60px] bg-light-red rounded-full justify-center items-center mb-0">
               <PlusIcon color={"white"} size={26} />
             </View>
           </Animated.View>

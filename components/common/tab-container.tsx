@@ -16,10 +16,13 @@ const TabContainer = (props: TabBarContainerProps) => {
         tabBarStyle: {
           backgroundColor:
             colorScheme === "dark" ? colors["black"] : colors["paper"],
+          borderTopWidth: 1,
+          borderTopColor:
+            colorScheme === "dark" ? colors["grey"] : colors["white"],
+          // elevation: 0,
           position: "absolute",
           bottom: 0,
           height: 60,
-
           shadowColor: "#000",
           paddingHorizontal: 5,
           shadowOpacity: 0.15,

@@ -9,11 +9,13 @@ import { SettingsType } from "../../types/settings.type";
 import { mergeConfigWithStoredSettings } from "../../utils/settings.utils";
 import { settingsConfig } from "../../constants/configs/settings.config";
 import GlobalClasses from "../../constants/styles/global.classes";
+import { useColorScheme } from "nativewind";
 
 const Settings = () => {
   const [mergedSettings, setMergedSettings] = useState<any>([]);
   const { savedSettings, setSavedSettingsWithUpdate } =
     useContext(SettingsContext);
+  const { colorScheme, toggleColorScheme } = useColorScheme();
 
   useEffect(() => {
     const mergedSettings = mergeConfigWithStoredSettings({
@@ -23,12 +25,12 @@ const Settings = () => {
     setMergedSettings(mergedSettings);
   }, [savedSettings]);
 
-  useEffect(() => {
-    console.log("here");
-  }, []);
-
   const handleSettingsChange = async (key: string, value: any) => {
     setSavedSettingsWithUpdate(key, value);
+
+    if (key === "dark-mode") {
+      toggleColorScheme();
+    }
   };
 
   return (

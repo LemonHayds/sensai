@@ -68,11 +68,6 @@ const SettingsProvider = ({ children }: { children: ReactNode }) => {
     setSavedSettingsWithUpdate,
   };
 
-  //DARK MODE
-  useEffect(() => {
-    toggleColorScheme();
-  }, [savedSettings]);
-
   return (
     <SettingsContext.Provider value={contextValue}>
       {children}

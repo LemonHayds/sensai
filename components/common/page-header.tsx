@@ -3,7 +3,6 @@ import { View } from "react-native";
 
 import TaskHeaderIndicator from "../tasks/task-header-indicator";
 import ViewSwitcher from "../tasks/view-switcher";
-import ProfilePicture from "../user/profile-pictuer";
 import SensaiTextContainer from "./sensai-text-container";
 import { HeadingText, SensaiText } from "./text";
 import GlobalClasses from "../../constants/styles/global.classes";
@@ -32,7 +31,7 @@ export default function PageHeader(props: PageHeaderProps) {
     case "welcome":
       return (
         <View>
-          <HeadingText text="`Good Morning ${user?.name}`" />
+          <HeadingText text="`Good Morning`" />
         </View>
       );
     case "date":
@@ -43,7 +42,7 @@ export default function PageHeader(props: PageHeaderProps) {
 
       return (
         <View
-          className={`relative flex-col gap-4 shadow-sm pb-4 border-b border-white ${GlobalClasses.bg}`}
+          className={`relative flex-col gap-4 shadow-sm pb-3 border-b ${GlobalClasses.border} ${GlobalClasses.bg}`}
         >
           <View className="flex-row items-center justify-between px-4">
             <View>

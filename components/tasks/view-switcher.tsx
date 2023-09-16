@@ -1,12 +1,13 @@
 import { TouchableWithoutFeedback, View, Text } from "react-native";
-import { HeadingText } from "../common/text";
 import {
   ListBulletIcon,
   RectangleStackIcon,
 } from "react-native-heroicons/outline";
+import { useColorScheme } from "nativewind";
 
 export const ViewSwitcher = (props: ViewSwitcherProps) => {
   const { selectedView, setSelectedView, customClassName } = props;
+  const { colorScheme } = useColorScheme();
 
   return (
     <View
@@ -14,21 +15,27 @@ export const ViewSwitcher = (props: ViewSwitcherProps) => {
     >
       <TouchableWithoutFeedback onPress={() => setSelectedView("stack")}>
         <View
-          className={`mr-5 ${
+          className={`mx-6 ${
             selectedView === "stack" ? "opacity-100" : "opacity-30"
           }`}
         >
-          <RectangleStackIcon color={"black"} size={22} />
+          <RectangleStackIcon
+            color={colorScheme === "dark" ? "white" : "black"}
+            size={24}
+          />
         </View>
       </TouchableWithoutFeedback>
       <View className="border-[0.5px] h-full border-black" />
       <TouchableWithoutFeedback onPress={() => setSelectedView("list")}>
         <View
-          className={`ml-5 ${
+          className={`mx-6 ${
             selectedView === "list" ? "opacity-100" : "opacity-30"
           }`}
         >
-          <ListBulletIcon color={"black"} size={22} />
+          <ListBulletIcon
+            color={colorScheme === "dark" ? "white" : "black"}
+            size={24}
+          />
         </View>
       </TouchableWithoutFeedback>
     </View>

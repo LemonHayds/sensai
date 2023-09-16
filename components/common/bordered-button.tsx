@@ -35,7 +35,11 @@ const BorderedButton = (props: BorderedButtonProps) => {
       >
         <View
           className={`rounded-md p-[8px] m-[5px] ${
-            transparentButton ? "" : pressed ? "bg-black" : "bg-black/50"
+            transparentButton
+              ? ""
+              : pressed
+              ? `${colorScheme === "dark" ? "bg-white" : "bg-black"}`
+              : `${colorScheme === "dark" ? "bg-white/10" : "bg-black/40"}`
           }`}
         >
           {children}

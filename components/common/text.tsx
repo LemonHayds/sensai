@@ -1,5 +1,6 @@
 import { Text } from "react-native";
 import TextStyles from "../../constants/styles/text.styles";
+import GlobalClasses from "../../constants/styles/global.classes";
 
 type TextProps = {
   text?: string;
@@ -7,7 +8,7 @@ type TextProps = {
   customClassName?: string;
 };
 
-const BaseTextClassNames = "text-black dark:text-white";
+const BaseTextClassNames = `${GlobalClasses["text-color"]}`;
 
 export const HeadingText = (props: TextProps) => {
   const { text, customClassName } = props;

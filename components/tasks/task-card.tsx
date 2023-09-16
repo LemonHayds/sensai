@@ -47,10 +47,8 @@ export const TaskCard = (props: TaskCardProps) => {
         <Card
           customClassName={`border-[1px] shadow-sm ${
             complete
-              ? `${
-                  colorScheme === "dark" ? "border-white/30" : "border-black/30"
-                }`
-              : `${colorScheme === "dark" ? "" : "border-white/90"}`
+              ? `${colorScheme === "dark" ? "border-grey" : "border-grey/30"}`
+              : `${colorScheme === "dark" ? "border-black" : "border-white/60"}`
           } ${TaskCardClassNames} ${customClassName}`}
         >
           <View className="flex-row justify-between">
@@ -72,7 +70,10 @@ export const TaskCard = (props: TaskCardProps) => {
                 onPress={() => handleTaskComplete()}
                 parentColor={GlobalClasses.bg}
               >
-                <CheckIcon color={"white"} size={15} />
+                <CheckIcon
+                  color={colorScheme === "dark" && complete ? "black" : "white"}
+                  size={15}
+                />
               </BorderedButton>
             </View>
           </View>

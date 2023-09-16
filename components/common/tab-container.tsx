@@ -19,6 +19,7 @@ const TabContainer = (props: TabBarContainerProps) => {
           position: "absolute",
           bottom: 0,
           height: 60,
+
           shadowColor: "#000",
           paddingHorizontal: 5,
           shadowOpacity: 0.15,

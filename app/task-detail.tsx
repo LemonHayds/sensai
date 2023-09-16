@@ -8,11 +8,15 @@ import { SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";
 import GlassContainer from "../components/common/glass-container";
 import Animated from "react-native-reanimated";
+import GlobalClasses from "../constants/styles/global.classes";
+import { useColorScheme } from "nativewind";
 
 export default function TaskDetail(props: TaskDetailProps) {
   const { selectedTask, setSelectedTask } = props;
-
+  const { colorScheme } = useColorScheme();
   const router = useRouter();
+
+  console.log(selectedTask);
 
   const handleClose = () => {
     router.back();
@@ -20,12 +24,15 @@ export default function TaskDetail(props: TaskDetailProps) {
   };
 
   return (
-    <SafeAreaView className="bg-paper flex-1">
-      <View className="flex-row p-2 flex justify-between">
+    <SafeAreaView className={`flex-1 ${GlobalClasses.bg}`}>
+      <View className="flex-row px-4 py-2 flex justify-between">
         <Animated.View sharedTransitionTag={`task.icon`}>
           <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
             <View className="flex-row items-center">
-              <YinYang color="black" weight="fill" />
+              <YinYang
+                color={colorScheme === "dark" ? "white" : "black"}
+                weight="fill"
+              />
             </View>
           </GlassContainer>
         </Animated.View>
@@ -36,8 +43,9 @@ export default function TaskDetail(props: TaskDetailProps) {
           customClassName="w-[35px] h-[35px]"
           transparentButton={true}
           filledBorder={true}
+          parentColor={GlobalClasses.bg}
         >
-          <XMarkIcon color={"black"} className="text-black/60 bg-paper" />
+          <XMarkIcon color={colorScheme === "dark" ? "white" : "black"} />
         </BorderedButton>
       </View>
       <View className="px-3 text-xl">

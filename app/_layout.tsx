@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SettingsProvider } from "../components/providers/settings-provider";
 import GlobalClasses from "../constants/styles/global.classes";
+import { StatusBar } from "expo-status-bar";
+import { useColorScheme } from "nativewind";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -44,8 +46,11 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const { colorScheme } = useColorScheme();
+
   return (
     <>
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
       <SafeAreaView style={{ flex: 1 }} className={GlobalClasses.bg}>
         <SettingsProvider>
           <Stack screenOptions={{ headerShown: false }}>

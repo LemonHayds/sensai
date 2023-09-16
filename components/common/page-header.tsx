@@ -43,28 +43,27 @@ export default function PageHeader(props: PageHeaderProps) {
 
       return (
         <View
-          className={`relative shadow-sm pb-4 border-b border-white ${GlobalClasses.bg}`}
+          className={`relative flex-col gap-4 shadow-sm pb-4 border-b border-white ${GlobalClasses.bg}`}
         >
-          <View className="flex-row justify-between px-4">
+          <View className="flex-row items-center justify-between px-4">
             <View>
               <HeadingText
                 text={`Today`}
-                customClassName="text-3xl font-bold mb-1"
-              />
-              <SensaiTextContainer customClassName="mt-1">
-                <SensaiText
-                  text={formattedDate.toString()}
-                  customClassName="w-fit text-xl text-white dark:text-white"
-                />
-              </SensaiTextContainer>
-            </View>
-            <View className="flex-col justify-between items-end">
-              <ProfilePicture width={profileSize} height={profileSize} />
-              <ViewSwitcher
-                selectedView={selectedView}
-                setSelectedView={setSelectedView}
+                customClassName="text-3xl font-bold"
               />
             </View>
+            <SensaiTextContainer customClassName="mt-1">
+              <SensaiText
+                text={formattedDate.toString()}
+                customClassName="w-fit text-xl text-white dark:text-white"
+              />
+            </SensaiTextContainer>
+          </View>
+          <View className="flex-col justify-center items-center">
+            <ViewSwitcher
+              selectedView={selectedView}
+              setSelectedView={setSelectedView}
+            />
           </View>
           <TaskHeaderIndicator
             tasksLength={taskLength}

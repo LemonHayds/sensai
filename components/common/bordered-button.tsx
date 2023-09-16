@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
+import { useColorScheme } from "nativewind";
 
 const BorderedButton = (props: BorderedButtonProps) => {
   const {
@@ -11,16 +12,21 @@ const BorderedButton = (props: BorderedButtonProps) => {
     transparentButton = false,
   } = props;
   const [pressed, setPressed] = useState(false);
+  const { colorScheme } = useColorScheme();
 
   return (
     <>
       <TouchableOpacity
         className={`rounded-lg relative flex items-center justify-center border-[1px] ${
           filledBorder
-            ? "border-black"
+            ? `${colorScheme === "dark" ? "border-white" : "border-black"}`
             : pressed
-            ? "border-black/60"
-            : "border-black/40"
+            ? `${
+                colorScheme === "dark" ? "border-white/60" : "border-black/60"
+              }`
+            : `${
+                colorScheme === "dark" ? "border-white/40" : "border-black/40"
+              }`
         } ${customClassName}`}
         onPress={() => {
           setPressed(!pressed);

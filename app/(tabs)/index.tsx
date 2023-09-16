@@ -1,14 +1,12 @@
 import ProfilePicture from "../../components/user/profile-pictuer";
 import { View } from "react-native";
-import { useColorScheme } from "nativewind";
 import { Card } from "../../components/common/card";
 import { HeadingText } from "../../components/common/text";
+import GlobalClassNames from "../../constants/styles/global.classes";
 
 export default function Home() {
-  const { colorScheme, toggleColorScheme } = useColorScheme();
-
   return (
-    <View className="flex-1 px-4 bg-light-paper dark:bg-light-black">
+    <View className={`flex-1 px-4 ${GlobalClassNames.bg}`}>
       <View className="flex flex-row items-center w-full">
         <HeadingText text="Good Morning Hayden" customClassName="flex-1" />
         <View className="flex-none">

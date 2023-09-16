@@ -37,7 +37,7 @@ export const SensaiText = (props: TextProps) => {
   const { text, customClassName } = props;
   return (
     <Text
-      className={`mb-[2px] ${BaseTextClassNames} ${customClassName}`}
+      className={`mb-[3.5px] ${BaseTextClassNames} ${customClassName}`}
       style={{ ...TextStyles.sensai }}
     >
       {text}

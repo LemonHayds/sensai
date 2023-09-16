@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
 import { CheckIcon } from "react-native-heroicons/mini";
-
+import { useColorScheme } from "nativewind";
 import BorderedButton from "../common/bordered-button";
 import { Card } from "../common/card";
 import GlassContainer from "../common/glass-container";
 import { BodyText, HeadingText } from "../common/text";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import Animated from "react-native-reanimated";
+import GlobalClasses from "../../constants/styles/global.classes";
 
 export const TaskCard = (props: TaskCardProps) => {
-  const TaskCardClassNames = "bg-paper px-4 py-4";
+  const TaskCardClassNames = `${GlobalClasses.bg} px-4 py-4`;
   const {
     task,
     setSelectedTask,
@@ -19,9 +20,9 @@ export const TaskCard = (props: TaskCardProps) => {
     customClassName,
   } = props;
   const [complete, setComplete] = useState(false);
-  const params = useLocalSearchParams;
-  const router = useRouter();
 
+  const router = useRouter();
+  const { colorScheme } = useColorScheme();
   const handleTaskComplete = () => {
     setComplete((prevComplete: boolean) => {
       const isComplete = !prevComplete;
@@ -45,7 +46,11 @@ export const TaskCard = (props: TaskCardProps) => {
       <View className="flex-1">
         <Card
           customClassName={`border-[1px] shadow-sm ${
-            complete ? "border-black/30" : "border-white/90"
+            complete
+              ? `${
+                  colorScheme === "dark" ? "border-white/30" : "border-black/30"
+                }`
+              : `${colorScheme === "dark" ? "" : "border-white/90"}`
           } ${TaskCardClassNames} ${customClassName}`}
         >
           <View className="flex-row justify-between">
@@ -65,7 +70,7 @@ export const TaskCard = (props: TaskCardProps) => {
             <View>
               <BorderedButton
                 onPress={() => handleTaskComplete()}
-                parentColor="bg-paper"
+                parentColor={GlobalClasses.bg}
               >
                 <CheckIcon color={"white"} size={15} />
               </BorderedButton>

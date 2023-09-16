@@ -6,6 +6,7 @@ import {
   updateSettings,
   syncSettings,
 } from "../../utils/settings.utils";
+import { useColorScheme } from "nativewind";
 import { removeData } from "../../utils/store.utils";
 
 type SettingsContextType = {
@@ -21,14 +22,15 @@ const defaultValue: SettingsContextType = {
 const SettingsContext = createContext(defaultValue);
 
 const SettingsProvider = ({ children }: { children: ReactNode }) => {
-  const [savedSettings, setSavedSettings] = useState<any>(
+  const { colorScheme, toggleColorScheme } = useColorScheme();
+  const [savedSettings, setSavedSettings] = useState<any[]>(
     defaultValue.savedSettings
   );
 
   useEffect(() => {
     async function fetchSettings() {
       // await removeData({ storageKey: "settings" });
-      let storedSettings = await getSettings();
+      let storedSettings: any[] = await getSettings();
 
       //If settings doesn't exist, initiate it
       if (!storedSettings || Object.keys(storedSettings).length === 0) {
@@ -39,6 +41,14 @@ const SettingsProvider = ({ children }: { children: ReactNode }) => {
       }
 
       setSavedSettings(storedSettings);
+
+      const isDarkMode = storedSettings.find(
+        (setting) => setting.key === "dark-mode"
+      ).value;
+
+      if (colorScheme !== "dark" && isDarkMode) {
+        toggleColorScheme();
+      }
     }
     fetchSettings();
   }, []);
@@ -57,6 +67,11 @@ const SettingsProvider = ({ children }: { children: ReactNode }) => {
     savedSettings,
     setSavedSettingsWithUpdate,
   };
+
+  //DARK MODE
+  useEffect(() => {
+    toggleColorScheme();
+  }, [savedSettings]);
 
   return (
     <SettingsContext.Provider value={contextValue}>

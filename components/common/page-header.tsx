@@ -6,6 +6,7 @@ import ViewSwitcher from "../tasks/view-switcher";
 import ProfilePicture from "../user/profile-pictuer";
 import SensaiTextContainer from "./sensai-text-container";
 import { HeadingText, SensaiText } from "./text";
+import GlobalClasses from "../../constants/styles/global.classes";
 
 type PageHeaderProps = {
   type: "welcome" | "date";
@@ -41,7 +42,9 @@ export default function PageHeader(props: PageHeaderProps) {
       });
 
       return (
-        <View className="relative bg-paper shadow-sm pb-4 border-b border-white">
+        <View
+          className={`relative shadow-sm pb-4 border-b border-white ${GlobalClasses.bg}`}
+        >
           <View className="flex-row justify-between px-4">
             <View>
               <HeadingText

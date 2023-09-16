@@ -8,6 +8,7 @@ import { FormTypesParser } from "../../constants/parsers/form-types.parser";
 import { SettingsType } from "../../types/settings.type";
 import { mergeConfigWithStoredSettings } from "../../utils/settings.utils";
 import { settingsConfig } from "../../constants/configs/settings.config";
+import GlobalClasses from "../../constants/styles/global.classes";
 
 const Settings = () => {
   const [mergedSettings, setMergedSettings] = useState<any>([]);
@@ -22,12 +23,16 @@ const Settings = () => {
     setMergedSettings(mergedSettings);
   }, [savedSettings]);
 
+  useEffect(() => {
+    console.log("here");
+  }, []);
+
   const handleSettingsChange = async (key: string, value: any) => {
     setSavedSettingsWithUpdate(key, value);
   };
 
   return (
-    <View className="bg-paper flex-1 px-4 py-2">
+    <View className={`${GlobalClasses.bg} flex-1 px-4 py-2`}>
       <HeadingText text="Settings" customClassName="text-3xl mb-4" />
       <FlatList
         data={mergedSettings}

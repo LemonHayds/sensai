@@ -13,22 +13,12 @@ import {
   HomeIcon as HomeIconSolid,
   CheckCircleIcon as CheckCircleIconSolid,
 } from "react-native-heroicons/solid";
-
-//Settings
-import {
-  getSettings,
-  initiateSettings,
-  mergeConfigWithStoredSettings,
-} from "../../utils/settings.utils";
-import { settingsConfig } from "../../constants/configs/settings.config";
-
-//OTHER HERE
-
+import { useColorScheme } from "nativewind";
 import TabContainer from "../../components/common/tab-container";
 import AddButton from "../../components/common/add-button";
-
 export default function Layout() {
   const [addButtonOpened, setAddButtonOpened] = useState(false);
+  const { colorScheme } = useColorScheme();
 
   return (
     <>
@@ -40,7 +30,10 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <HomeIconSolid color={"black"} size={26} />
+                    <HomeIconSolid
+                      color={colorScheme === "dark" ? "white" : "black"}
+                      size={26}
+                    />
                   ) : (
                     <HomeIcon color={"grey"} size={26} />
                   )}
@@ -59,7 +52,10 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <CheckCircleIconSolid color={"black"} size={26} />
+                    <CheckCircleIconSolid
+                      color={colorScheme === "dark" ? "white" : "black"}
+                      size={26}
+                    />
                   ) : (
                     <CheckCircleIcon color={"grey"} size={26} />
                   )}
@@ -94,7 +90,10 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <ChartBarIconSolid color={"black"} size={26} />
+                    <ChartBarIconSolid
+                      color={colorScheme === "dark" ? "white" : "black"}
+                      size={26}
+                    />
                   ) : (
                     <ChartBarIcon color={"grey"} size={26} />
                   )}
@@ -114,7 +113,10 @@ export default function Layout() {
               return (
                 <View className="absolute top-[50%]">
                   {focused ? (
-                    <AdjustmentsHorizontalIconSolid color={"black"} size={26} />
+                    <AdjustmentsHorizontalIconSolid
+                      color={colorScheme === "dark" ? "white" : "black"}
+                      size={26}
+                    />
                   ) : (
                     <AdjustmentsHorizontalIcon color={"grey"} size={26} />
                   )}

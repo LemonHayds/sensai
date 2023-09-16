@@ -22,7 +22,7 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
     case "toggle":
       formElement = (
         <Switch
-          value={Boolean(value)}
+          value={value}
           onValueChange={(newValue: boolean) => onChange(itemKey, newValue)}
         />
       );

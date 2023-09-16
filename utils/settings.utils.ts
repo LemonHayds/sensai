@@ -13,54 +13,83 @@ export const initiateSettings = async () => {
   await storeData(STORAGE_KEY, initialMappedSettings);
 };
 
+export const syncSettings = async (storedSettings: any[]) => {
+  const syncedSettings = [...storedSettings];
+
+  settingsConfig.forEach((configSetting) => {
+    const { key, default: defaultValue } = configSetting;
+
+    if (!syncedSettings.some((setting) => setting.key === key)) {
+      syncedSettings.push({ key, value: defaultValue });
+    }
+  });
+
+  const settingsChanged =
+    JSON.stringify(syncedSettings) !== JSON.stringify(storedSettings);
+
+  if (settingsChanged) {
+    await updateSettings(syncedSettings);
+  }
+
+  return syncedSettings;
+};
+
 export const mergeConfigWithStoredSettings = (props: {
-  settingsConfig: any;
+  settingsConfig: any[];
   storedSettings: any[];
 }) => {
   const { settingsConfig, storedSettings } = props;
 
-  const mappedSettings = settingsConfig.map((setting: any) => {
-    const storedSetting = storedSettings.find(
-      (ss: any) => ss.key === setting.key
-    );
-    const result: any = {
-      key: setting.key,
-      label: setting.label,
-      type: setting.type,
-      value: storedSetting ? storedSetting.value : setting.default,
-    };
-    if (setting.selectItems) {
-      result.selectOptions = setting.selectItems;
-    }
-    return result;
-  });
+  const mergedSettings = storedSettings
+    .filter((savedSetting) =>
+      settingsConfig.some(
+        (configSetting) => configSetting.key === savedSetting.key
+      )
+    )
+    .map((savedSetting) => {
+      const configSetting = settingsConfig.find(
+        (setting) => setting.key === savedSetting.key
+      );
+      const result: any = {
+        key: configSetting.key,
+        label: configSetting.label,
+        type: configSetting.type,
+        value:
+          !savedSetting.value !== undefined
+            ? savedSetting.value
+            : configSetting.default,
+      };
 
-  return mappedSettings;
-};
+      if (configSetting && configSetting.selectItems) {
+        result.selectOptions = configSetting.selectItems;
+      }
 
-export const unmergeSettingsWithConfig = (settings: any) => {
-  const unmergedSettings = settings.map((setting: any) => {
-    const result: any = {
-      key: setting.key,
-      value: setting.value,
-    };
-    return result;
-  });
-  return unmergedSettings;
+      return result;
+    });
+
+  return mergedSettings;
 };
 
 export const updateSettingsValueByKey = (props: {
-  settings: any;
+  previousSettings: any;
   keyToUpdate: string;
   newValue: any;
 }) => {
-  const { settings, keyToUpdate, newValue } = props;
-  const updatedSettings = settings.map((setting: any) => {
+  const { previousSettings, keyToUpdate, newValue } = props;
+
+  // Filter out settings that are not in settingsConfig
+  const filteredSettings = previousSettings.filter((setting: any) =>
+    settingsConfig.some((configSetting) => configSetting.key === setting.key)
+  );
+
+  // Update the value for the specified key
+  const updatedSettings = filteredSettings.map((setting: any) => {
     if (setting.key === keyToUpdate) {
-      return { ...setting, value: newValue };
+      setting.value = newValue;
     }
     return setting;
   });
+
   return updatedSettings;
 };
 

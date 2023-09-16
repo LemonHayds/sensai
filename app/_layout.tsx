@@ -2,6 +2,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SettingsProvider } from "../components/providers/settings-provider";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -45,17 +46,19 @@ function RootLayoutNav() {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }} className="bg-paper">
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen
-            name="task-detail"
-            options={{
-              headerShown: false,
-              presentation: "transparentModal",
-              animation: "fade",
-            }}
-          />
-        </Stack>
+        <SettingsProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen
+              name="task-detail"
+              options={{
+                headerShown: false,
+                presentation: "transparentModal",
+                animation: "fade",
+              }}
+            />
+          </Stack>
+        </SettingsProvider>
       </SafeAreaView>
     </>
   );

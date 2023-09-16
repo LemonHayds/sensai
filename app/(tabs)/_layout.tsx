@@ -28,27 +28,7 @@ import TabContainer from "../../components/common/tab-container";
 import AddButton from "../../components/common/add-button";
 
 export default function Layout() {
-  const [settingsState, setSettingsState] = useState(["test"]);
   const [addButtonOpened, setAddButtonOpened] = useState(false);
-
-  useEffect(() => {
-    //SETTINGS
-    async function fetchSettings() {
-      let storedSettings = await getSettings();
-      console.log("storedSettings", storedSettings);
-
-      if (!storedSettings || Object.keys(storedSettings).length === 0) {
-        await initiateSettings();
-        storedSettings = await getSettings();
-      }
-      const mergedSettings = mergeConfigWithStoredSettings({
-        settingsConfig: settingsConfig,
-        storedSettings,
-      });
-      return setSettingsState(mergedSettings);
-    }
-    fetchSettings();
-  }, []);
 
   return (
     <>
@@ -145,7 +125,6 @@ export default function Layout() {
           listeners={{
             tabPress: () => setAddButtonOpened(false),
           }}
-          initialParams={{ settingsState, setSettingsState }}
         />
       </TabContainer>
     </>

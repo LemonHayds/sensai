@@ -43,11 +43,7 @@ export const getMultipleData = async (storageKeys: string[]) => {
 
 export const updateData = async (storageKey: string, value: any) => {
   try {
-    const existingValue = await AsyncStorage.getItem(storageKey);
-
-    const existingData = existingValue ? JSON.parse(existingValue) : {};
-    const mergedData = { ...existingData, ...value };
-    await AsyncStorage.setItem(storageKey, JSON.stringify(mergedData));
+    await AsyncStorage.setItem(storageKey, JSON.stringify(value));
   } catch (error) {
     console.log(error);
   }
@@ -61,9 +57,13 @@ export const updateMultipleData = async (data: any[]) => {
   }
 };
 
-export const removeData = async (storageKey: string, allData?: boolean) => {
+export const removeData = async (props: {
+  storageKey?: string;
+  allData?: boolean;
+}) => {
+  const { storageKey, allData } = props;
   try {
-    if (!allData) {
+    if (!allData && storageKey) {
       await AsyncStorage.removeItem(storageKey);
       return;
     } else {

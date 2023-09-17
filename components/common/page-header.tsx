@@ -24,8 +24,9 @@ export default function PageHeader(props: PageHeaderProps) {
     taskLength,
     completedTasksLength,
     profileSize = 40,
+    setSelectedView,
+    selectedView,
   } = props;
-  const [selectedView, setSelectedView] = useState<"list" | "stack">("list");
 
   switch (type) {
     case "welcome":

@@ -10,11 +10,15 @@ export const ViewSwitcher = (props: ViewSwitcherProps) => {
   const { selectedView, setSelectedView, customClassName } = props;
   const { colorScheme } = useColorScheme();
 
+  const handleViewChange = (view: "list" | "stack") => {
+    setSelectedView(view);
+  };
+
   return (
     <View
       className={`flex-row justify-center items-center mr-2 ${customClassName}`}
     >
-      <TouchableWithoutFeedback onPress={() => setSelectedView("stack")}>
+      <TouchableWithoutFeedback onPress={() => handleViewChange("stack")}>
         <View
           className={`mx-6 flex-col space-y-2 justify-center items-center ${
             selectedView === "stack" ? "opacity-100" : "opacity-30"
@@ -32,7 +36,7 @@ export const ViewSwitcher = (props: ViewSwitcherProps) => {
           />
         </View>
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={() => setSelectedView("list")}>
+      <TouchableWithoutFeedback onPress={() => handleViewChange("list")}>
         <View
           className={`mx-6 flex-col space-y-2 justify-center items-center ${
             selectedView === "list" ? "opacity-100" : "opacity-30"

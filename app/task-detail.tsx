@@ -16,8 +16,6 @@ export default function TaskDetail(props: TaskDetailProps) {
   const { colorScheme } = useColorScheme();
   const router = useRouter();
 
-  console.log(selectedTask);
-
   const handleClose = () => {
     router.back();
     // setSelectedTask(null);

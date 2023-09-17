@@ -5,8 +5,6 @@ export const GlassContainer = (props: GlassContainerProps) => {
   const { children, customClassName } = props;
   const { colorScheme } = useColorScheme();
 
-  console.log(colorScheme);
-
   return (
     <View
       className={`flex-row items-center justify-center relative ${customClassName}`}

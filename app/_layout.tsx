@@ -3,6 +3,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SettingsProvider } from "../components/providers/settings-provider";
+import { TasksProvider } from "../components/providers/tasks-provider";
 import GlobalClasses from "../constants/styles/global.classes";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "nativewind";
@@ -53,17 +54,19 @@ function RootLayoutNav() {
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
       <SafeAreaView style={{ flex: 1 }} className={GlobalClasses.bg}>
         <SettingsProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen
-              name="task-detail"
-              options={{
-                headerShown: false,
-                presentation: "transparentModal",
-                animation: "fade",
-              }}
-            />
-          </Stack>
+          <TasksProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen
+                name="task-detail"
+                options={{
+                  headerShown: false,
+                  presentation: "transparentModal",
+                  animation: "fade",
+                }}
+              />
+            </Stack>
+          </TasksProvider>
         </SettingsProvider>
       </SafeAreaView>
     </>

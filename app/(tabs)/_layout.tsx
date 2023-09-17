@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { View } from "react-native";
 import {
   AdjustmentsHorizontalIcon,

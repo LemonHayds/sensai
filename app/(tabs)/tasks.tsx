@@ -6,10 +6,10 @@ import {
   Lightbulb,
   YinYang,
 } from "phosphor-react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useColorScheme } from "nativewind";
 import { SafeAreaView, View } from "react-native";
-
+import { TasksContext } from "../../components/providers/tasks-provider";
 import GlobalClasses from "../../constants/styles/global.classes";
 import { TaskType } from "../../components/tasks/task-card";
 import TasksList from "../../components/tasks/tasks-list";
@@ -17,7 +17,7 @@ import TasksStack from "../../components/tasks/tasks-stack";
 import PageHeader from "../../components/common/page-header";
 
 export default function Tasks() {
-  const [selectedTask, setSelectedTask] = useState<TaskType | null>(null);
+  const { selectedTask, setSelectedTask } = useContext(TasksContext);
   const [selectedView, setSelectedView] = useState<"list" | "stack">("list");
   const [completedTasksCount, setCompletedTasksCount] = useState<number>(0);
   const { colorScheme } = useColorScheme();
@@ -156,8 +156,8 @@ export default function Tasks() {
 
 export type TasksLayoutProps = {
   tasks: TaskType[];
-  selectedTask: TaskType | null;
-  setSelectedTask: React.Dispatch<React.SetStateAction<TaskType | null>>;
+  selectedTask: TaskType | {};
+  setSelectedTask: React.Dispatch<React.SetStateAction<TaskType>>;
   completedTasksCount: number;
   setCompletedTasksCount: React.Dispatch<React.SetStateAction<number>>;
 };

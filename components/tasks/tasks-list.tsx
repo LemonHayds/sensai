@@ -13,8 +13,6 @@ export default function TasksList(props: TasksLayoutProps) {
     setCompletedTasksCount,
   } = props;
 
-  const tasksLength = tasks.length;
-
   return (
     <>
       <FlatList

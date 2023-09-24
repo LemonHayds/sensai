@@ -68,6 +68,7 @@ export default function TaskDetail(props: TaskDetailProps) {
 }
 
 type TaskDetailProps = {
+  tasks: TaskType[] | [];
   selectedTask: TaskType | {};
   setSelectedTask: React.Dispatch<React.SetStateAction<TaskType | null>>;
 };

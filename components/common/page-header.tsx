@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { View } from "react-native";
 
+import GlobalClasses from "../../constants/styles/global.classes";
 import TaskHeaderIndicator from "../tasks/task-header-indicator";
 import ViewSwitcher from "../tasks/view-switcher";
 import SensaiTextContainer from "./sensai-text-container";
 import { HeadingText, SensaiText } from "./text";
-import GlobalClasses from "../../constants/styles/global.classes";
 
 type PageHeaderProps = {
   type: "welcome" | "date";

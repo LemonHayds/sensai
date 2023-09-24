@@ -1,12 +1,23 @@
+import {
+  Alien,
+  Campfire,
+  Code,
+  FilmStrip,
+  Lightbulb,
+  YinYang,
+} from "phosphor-react-native";
 import { createContext, useState, useEffect, ReactNode } from "react";
 import TaskType from "../../types/task.type";
+import { useColorScheme } from "nativewind";
 
 type TasksContextType = {
+  tasks?: TaskType[] | [];
   selectedTask: TaskType | {};
   setSelectedTask: (task: TaskType | {}) => void;
 };
 
 const defaultValue: TasksContextType = {
+  tasks: [],
   selectedTask: {},
   setSelectedTask: (task) => {},
 };
@@ -17,8 +28,109 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
   const [selectedTask, setSelectedTask] = useState<TaskType | {}>(
     defaultValue.selectedTask
   );
+  const { colorScheme } = useColorScheme();
+
+  const tasks = [
+    {
+      id: 1,
+      title: "Task 1",
+      description:
+        "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      completed: false,
+      date: "2021-01-01",
+      time: "12:00",
+      icon: (
+        <YinYang
+          weight="fill"
+          color={colorScheme === "dark" ? "white" : "black"}
+          size={25}
+        />
+      ),
+    },
+    {
+      id: 2,
+      title: "Task 2",
+      description:
+        "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      completed: false,
+      date: "2021-01-01",
+      time: "12:00",
+      icon: (
+        <Code
+          weight="fill"
+          color={colorScheme === "dark" ? "white" : "black"}
+          size={25}
+        />
+      ),
+    },
+    {
+      id: 3,
+      title: "Task 3",
+      description:
+        "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      completed: false,
+      date: "2021-01-01",
+      time: "12:00",
+      icon: (
+        <Alien
+          weight="fill"
+          color={colorScheme === "dark" ? "white" : "black"}
+          size={25}
+        />
+      ),
+    },
+    {
+      id: 4,
+      title: "Task 4",
+      description:
+        "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      completed: false,
+      date: "2021-01-01",
+      time: "12:00",
+      icon: (
+        <Campfire
+          weight="fill"
+          color={colorScheme === "dark" ? "white" : "black"}
+          size={25}
+        />
+      ),
+    },
+    {
+      id: 5,
+      title: "Task 5",
+      description:
+        "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      completed: false,
+      date: "2021-01-01",
+      time: "12:00",
+      icon: (
+        <FilmStrip
+          weight="fill"
+          color={colorScheme === "dark" ? "white" : "black"}
+          size={25}
+        />
+      ),
+    },
+    {
+      id: 6,
+      title: "Task 6",
+      description:
+        "Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorum Ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.",
+      completed: false,
+      date: "2021-01-01",
+      time: "12:00",
+      icon: (
+        <Lightbulb
+          weight="fill"
+          color={colorScheme === "dark" ? "white" : "black"}
+          size={25}
+        />
+      ),
+    },
+  ];
 
   const contextValue: TasksContextType = {
+    tasks,
     selectedTask,
     setSelectedTask,
   };

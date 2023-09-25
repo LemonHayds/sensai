@@ -51,6 +51,7 @@ export const TaskCard = (props: TaskCardLayoutProps) => {
             complete={complete}
             handleTaskComplete={handleTaskComplete}
             customClassName={customClassName}
+            handleCardTap={handleCardTap}
           />
         )}
 
@@ -68,7 +69,8 @@ export const TaskCard = (props: TaskCardLayoutProps) => {
 };
 
 const TaskCardSmall = (props: TaskCardProps) => {
-  const { task, complete, handleTaskComplete, customClassName } = props;
+  const { handleCardTap, task, complete, handleTaskComplete, customClassName } =
+    props;
   const { colorScheme } = useColorScheme();
 
   return (
@@ -81,32 +83,35 @@ const TaskCardSmall = (props: TaskCardProps) => {
           : `${colorScheme === "dark" ? "border-black" : "border-white/60"}`
       } ${TaskCardClassNames} ${customClassName}`}
     >
-      <View className="flex-row justify-between">
-        <View className="flex-row items-center">
-          <Animated.View sharedTransitionTag={`task.${task.id}.icon`}>
-            <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
-              <View className="flex-row items-center">{task.icon}</View>
-            </GlassContainer>
-          </Animated.View>
+      {/* @ts-ignore */}
+      <TouchableWithoutFeedback onPress={() => handleCardTap(task)}>
+        <View className="flex-row justify-between">
+          <View className="flex-row items-center">
+            <Animated.View sharedTransitionTag={`task.${task.id}.icon`}>
+              <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
+                <View className="flex-row items-center">{task.icon}</View>
+              </GlassContainer>
+            </Animated.View>
 
-          <View className="flex-col justify-start items-start">
-            <HeadingText text={task.title} customClassName="text-[16px]" />
-            <BodyText text={`${task.time} pm`} />
+            <View className="flex-col justify-start items-start">
+              <HeadingText text={task.title} customClassName="text-[16px]" />
+              <BodyText text={`${task.time} pm`} />
+            </View>
+          </View>
+
+          <View>
+            <BorderedButton
+              onPress={() => handleTaskComplete()}
+              parentColor={GlobalClasses.bg}
+            >
+              <CheckIcon
+                color={colorScheme === "dark" && complete ? "black" : "white"}
+                size={15}
+              />
+            </BorderedButton>
           </View>
         </View>
-
-        <View>
-          <BorderedButton
-            onPress={() => handleTaskComplete()}
-            parentColor={GlobalClasses.bg}
-          >
-            <CheckIcon
-              color={colorScheme === "dark" && complete ? "black" : "white"}
-              size={15}
-            />
-          </BorderedButton>
-        </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Card>
   );
 };
@@ -164,6 +169,7 @@ type TaskCardLayoutProps = {
 
 type TaskCardProps = {
   complete: boolean;
+  handleCardTap?: (task: TaskType) => void;
   handleTaskComplete: () => void;
   task: TaskType;
   completedTasksCount?: number;

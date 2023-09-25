@@ -1,11 +1,13 @@
 import { FlatList, SafeAreaView, View } from "react-native";
+
+import { TasksLayoutProps } from "../../app/(tabs)/tasks";
+import GlobalClasses from "../../constants/styles/global.classes";
 import TaskCard from "./task-card";
 import { TaskType } from "./task-card";
-import GlobalClasses from "../../constants/styles/global.classes";
-import { TasksLayoutProps } from "../../app/(tabs)/tasks";
 
 export default function TasksList(props: TasksLayoutProps) {
   const {
+    handleCardTap,
     tasks,
     selectedTask,
     setSelectedTask,
@@ -28,6 +30,7 @@ export default function TasksList(props: TasksLayoutProps) {
               customClassName={item.id === tasks.length ? "mb-[200px]" : ""}
               completedTasksCount={completedTasksCount}
               setCompletedTasksCount={setCompletedTasksCount}
+              handleCardTap={() => handleCardTap(item as TaskType)}
             />
           </View>
         )}

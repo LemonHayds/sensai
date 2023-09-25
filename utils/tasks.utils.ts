@@ -1,6 +1,6 @@
-import { updateData, storeData, getData } from "./store.utils";
-import { generateTimeBasedId } from "./common.utils";
 import TaskType from "../types/task.type";
+import { generateTimeBasedId } from "./common.utils";
+import { getData, storeData, updateData } from "./store.utils";
 
 const STORAGE_KEY = "tasks";
 

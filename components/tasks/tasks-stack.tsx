@@ -13,7 +13,7 @@ import IncompleteButton from "./incomplete-button";
 import TaskCard from "./task-card";
 
 export default function TasksStack(props: TasksLayoutProps) {
-  const { completedTasksCount, setCompletedTasksCount } = props;
+  const { handleCardTap, completedTasksCount, setCompletedTasksCount } = props;
   const { tasks, selectedTask, setSelectedTask } = useContext(TasksContext);
   const [index, setIndex] = useState<number>(0);
 
@@ -46,7 +46,7 @@ export default function TasksStack(props: TasksLayoutProps) {
               animateOverlayLabelsOpacity
               backgroundColor="transparent"
               infinite
-              onTapCard={() => {}}
+              onTapCard={() => handleCardTap(tasks[index])}
               renderCard={(card, index) => {
                 return (
                   <TaskCard

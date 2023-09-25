@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useContext, useState } from "react";
 import { SafeAreaView, View } from "react-native";
 
@@ -12,11 +13,17 @@ export default function Tasks() {
   const { tasks, selectedTask, setSelectedTask } = useContext(TasksContext);
   const [selectedView, setSelectedView] = useState<"list" | "stack">("list");
   const [completedTasksCount, setCompletedTasksCount] = useState<number>(0);
+  const router = useRouter();
 
   let currentTasks: TaskType[] = [];
   if (tasks) {
     currentTasks = tasks as TaskType[];
   }
+
+  const handleCardTap = (task: any) => {
+    setSelectedTask(task);
+    router.push("/task-detail");
+  };
 
   return (
     <View className={`flex-1 ${GlobalClasses["light-bg"]}`}>
@@ -34,6 +41,7 @@ export default function Tasks() {
           setSelectedTask={setSelectedTask}
           completedTasksCount={completedTasksCount}
           setCompletedTasksCount={setCompletedTasksCount}
+          handleCardTap={handleCardTap}
         />
       ) : (
         <TasksList
@@ -42,6 +50,7 @@ export default function Tasks() {
           setSelectedTask={setSelectedTask}
           completedTasksCount={completedTasksCount}
           setCompletedTasksCount={setCompletedTasksCount}
+          handleCardTap={handleCardTap}
         />
       )}
     </View>
@@ -53,5 +62,6 @@ export type TasksLayoutProps = {
   selectedTask: TaskType | {};
   setSelectedTask: (task: TaskType | {}) => void;
   completedTasksCount: number;
+  handleCardTap: (task: TaskType) => void;
   setCompletedTasksCount: React.Dispatch<React.SetStateAction<number>>;
 };

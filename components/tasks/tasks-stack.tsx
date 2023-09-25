@@ -1,12 +1,15 @@
 import { useColorScheme } from "nativewind";
-import { useContext, useState } from "react";
-import { View } from "react-native";
+import { useContext, useRef, useState } from "react";
+import { SafeAreaView, View } from "react-native";
 import Swiper from "react-native-deck-swiper";
 
 import { TasksLayoutProps } from "../../app/(tabs)/tasks";
 import GlobalClasses from "../../constants/styles/global.classes";
 import TaskType from "../../types/task.type";
+import { SensaiText } from "../common/text";
 import { TasksContext } from "../providers/tasks-provider";
+import ComletedButton from "./completed-button";
+import IncompleteButton from "./incomplete-button";
 import TaskCard from "./task-card";
 
 export default function TasksStack(props: TasksLayoutProps) {
@@ -20,40 +23,67 @@ export default function TasksStack(props: TasksLayoutProps) {
     setIndex(index + 1);
   };
 
+  const swiperRef = useRef(null);
+
   return (
-    <View className={`${GlobalClasses["light-bg"]}`}>
-      {tasks && tasks.length > 0 && (
-        <Swiper
-          cards={tasks as TaskType[]}
-          cardIndex={index}
-          onSwiped={onSwiped}
-          stackSize={tasks.length}
-          stackScale={3}
-          stackSeparation={5}
-          cardVerticalMargin={20}
-          cardHorizontalMargin={0}
-          disableTopSwipe={true}
-          disableBottomSwipe={true}
-          overlayLabels={overlayLabels}
-          animateOverlayLabelsOpacity
-          backgroundColor="transparent"
-          infinite
-          onTapCard={() => {}}
-          renderCard={(card) => {
-            return (
-              <TaskCard
-                task={card}
-                setSelectedTask={setSelectedTask}
-                completedTasksCount={completedTasksCount}
-                setCompletedTasksCount={setCompletedTasksCount}
-                cardType="large"
-                customClassName={`${GlobalClasses.border}`}
+    <SafeAreaView>
+      <View className={`flex flex-col ${GlobalClasses["light-bg"]}`}>
+        <View className="h-[56.5%]">
+          {tasks && tasks.length > 0 && (
+            <Swiper
+              ref={swiperRef}
+              cards={tasks as TaskType[]}
+              cardIndex={index}
+              onSwiped={onSwiped}
+              stackSize={tasks.length}
+              stackScale={3}
+              stackSeparation={5}
+              cardVerticalMargin={20}
+              cardHorizontalMargin={0}
+              disableTopSwipe={true}
+              disableBottomSwipe={true}
+              overlayLabels={overlayLabels}
+              animateOverlayLabelsOpacity
+              backgroundColor="transparent"
+              infinite
+              onTapCard={() => {}}
+              renderCard={(card, index) => {
+                return (
+                  <TaskCard
+                    task={card}
+                    setSelectedTask={setSelectedTask}
+                    completedTasksCount={completedTasksCount}
+                    setCompletedTasksCount={setCompletedTasksCount}
+                    cardType="large"
+                    customClassName={`${GlobalClasses.border}`}
+                  />
+                );
+              }}
+            />
+          )}
+        </View>
+        <View className="basis-1/2">
+          <View className="items-center flex-row space-x-16 justify-center">
+            <View>
+              <IncompleteButton
+                onPress={() => {
+                  //@ts-ignore
+                  swiperRef?.current.swipeLeft();
+                }}
               />
-            );
-          }}
-        />
-      )}
-    </View>
+            </View>
+            <View>
+              <ComletedButton
+                onPress={() => {
+                  //@ts-ignore
+                  swiperRef?.current.swipeRight();
+                }}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 

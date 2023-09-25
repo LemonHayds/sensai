@@ -11,7 +11,9 @@ import TaskType from "../../types/task.type";
 import BorderedButton from "../common/bordered-button";
 import { Card } from "../common/card";
 import GlassContainer from "../common/glass-container";
+import { SensaiText } from "../common/text";
 import { BodyText, HeadingText } from "../common/text";
+import StreakCard from "../stats/streak-card";
 
 const TaskCardClassNames = `border-[1px] shadow-sm ${GlobalClasses.bg}`;
 
@@ -116,25 +118,34 @@ const TaskCardLarge = (props: TaskCardProps) => {
   return (
     <Card
       customClassName={`
-      p-4
+      px-6 pt-2 pb-4
       ${
         complete
           ? `${colorScheme === "dark" ? "border-grey" : "border-grey/30"}`
           : `${colorScheme === "dark" ? "border-black" : "border-white/60"}`
       } ${TaskCardClassNames} ${customClassName}`}
     >
-      <View className="flex-row items-center justify-center my-2">
-        <View className="flex justify-center items-center bg-light-red/50 rounded-full f h-[140px] w-[140px] p-6">
-          <YinYang
-            color={colorScheme === "dark" ? "white" : "white"}
-            weight="fill"
-            size={110}
-          />
+      <View className="h-[100px] flex flex-row">
+        <View className="basis-1/2">
+          <StreakCard customClassName="h-full" streak={10} />
+        </View>
+        <View className="basis-1/2">
+          <StreakCard customClassName="h-full" streak={10} />
         </View>
       </View>
-      <HeadingText text={task.title} customClassName="text-3xl mb-2" />
-      {/* <BodyText text={`${task.time} pm`} /> */}
-      <BodyText text={task.description} />
+      <View className="mb-2">
+        <View className="flex-row items-center justify-center mb-2">
+          <View className="flex justify-center items-center border border-white/30 bg-light-red/50 rounded-full f h-[140px] w-[140px] p-6">
+            <YinYang
+              color={colorScheme === "dark" ? "white" : "white"}
+              weight="fill"
+              size={110}
+            />
+          </View>
+        </View>
+        <HeadingText text={task.title} customClassName="text-4xl mb-2" />
+        <BodyText text={task.description} />
+      </View>
     </Card>
   );
 };

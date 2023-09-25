@@ -1,6 +1,7 @@
 import { Text } from "react-native";
-import TextStyles from "../../constants/styles/text.styles";
+
 import GlobalClasses from "../../constants/styles/global.classes";
+import TextStyles from "../../constants/styles/text.styles";
 
 type TextProps = {
   text?: string;
@@ -35,11 +36,11 @@ export const BodyText = (props: TextProps) => {
 };
 
 export const SensaiText = (props: TextProps) => {
-  const { text, customClassName } = props;
+  const { text, additionalStyles, customClassName } = props;
   return (
     <Text
       className={`mb-[3.5px] ${BaseTextClassNames} ${customClassName}`}
-      style={{ ...TextStyles.sensai }}
+      style={{ ...TextStyles.sensai, ...additionalStyles }}
     >
       {text}
     </Text>

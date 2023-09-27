@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useContext, useState } from "react";
 import { SafeAreaView, View } from "react-native";
+import { measure } from "react-native-reanimated";
 
 import PageHeader from "../../components/common/page-header";
 import { TasksContext } from "../../components/providers/tasks-provider";
@@ -20,10 +21,24 @@ export default function Tasks() {
     currentTasks = tasks as TaskType[];
   }
 
-  const handleCardTap = (task: any) => {
-    setSelectedTask(task);
-    router.push("/task-detail");
+  const [modal, setModal] = useState({ modal: null });
+
+  const openTaskModal = (position: any) => {
+    //@ts-ignore
+    setModal({ icon: selectedTask.icon, position });
   };
+
+  const closeTaskModal = () => {
+    setModal({ modal: null });
+  };
+
+  const handleCardTap = (task: any) => {};
+
+  // OLD
+  // const handleCardTap = (task: any) => {
+  //   setSelectedTask(task);
+  //   router.push("/task-detail");
+  // };
 
   return (
     <View className={`flex-1 ${GlobalClasses["light-bg"]}`}>
@@ -53,6 +68,7 @@ export default function Tasks() {
           handleCardTap={handleCardTap}
         />
       )}
+      {}
     </View>
   );
 }

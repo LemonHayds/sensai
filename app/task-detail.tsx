@@ -1,17 +1,18 @@
-import { View } from "react-native";
-import { XMarkIcon } from "react-native-heroicons/solid";
-import { YinYang } from "phosphor-react-native";
-import BorderedButton from "../components/common/bordered-button";
-import { BodyText, HeadingText } from "../components/common/text";
-import { TaskType } from "../components/tasks/task-card";
-import { SafeAreaView } from "react-native";
 import { useRouter } from "expo-router";
-import GlassContainer from "../components/common/glass-container";
-import Animated from "react-native-reanimated";
-import GlobalClasses from "../constants/styles/global.classes";
 import { useColorScheme } from "nativewind";
-import { TasksContext } from "../components/providers/tasks-provider";
+import { YinYang } from "phosphor-react-native";
 import { useContext } from "react";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native";
+import { XMarkIcon } from "react-native-heroicons/solid";
+import Animated from "react-native-reanimated";
+
+import BorderedButton from "../components/common/bordered-button";
+import GlassContainer from "../components/common/glass-container";
+import { BodyText, HeadingText } from "../components/common/text";
+import { TasksContext } from "../components/providers/tasks-provider";
+import GlobalClasses from "../constants/styles/global.classes";
+import TaskType from "../types/task.type";
 
 export default function TaskDetail(props: TaskDetailProps) {
   const { selectedTask, setSelectedTask } = useContext(TasksContext);
@@ -27,7 +28,14 @@ export default function TaskDetail(props: TaskDetailProps) {
 
   return (
     <SafeAreaView className={`flex-1 ${GlobalClasses.bg}`}>
-      <View>
+      <View className="relative">
+        <View className="absolute top-[20px] right-[-310px] opacity-5">
+          <YinYang
+            color={colorScheme === "dark" ? "grey" : "black"}
+            weight="fill"
+            size={600}
+          />
+        </View>
         <View className="flex-row px-4 py-2 flex justify-between mb-2">
           <Animated.View sharedTransitionTag={`task.icon`}>
             <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">

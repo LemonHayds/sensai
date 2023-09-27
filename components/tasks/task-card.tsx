@@ -1,17 +1,18 @@
-import { useRouter } from "expo-router";
 import { useColorScheme } from "nativewind";
 import { YinYang } from "phosphor-react-native";
-import { useState } from "react";
+import { createRef, useRef, useState } from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
 import { CheckIcon } from "react-native-heroicons/mini";
+import { CalendarIcon, ClockIcon } from "react-native-heroicons/mini";
 import Animated from "react-native-reanimated";
+import { measure } from "react-native-reanimated";
 
+import colorsStyles from "../../constants/styles/colors.styles";
 import GlobalClasses from "../../constants/styles/global.classes";
 import TaskType from "../../types/task.type";
 import BorderedButton from "../common/bordered-button";
 import { Card } from "../common/card";
 import GlassContainer from "../common/glass-container";
-import { SensaiText } from "../common/text";
 import { BodyText, HeadingText } from "../common/text";
 import StreakCard from "../stats/streak-card";
 
@@ -123,33 +124,54 @@ const TaskCardLarge = (props: TaskCardProps) => {
   return (
     <Card
       customClassName={`
-      px-6 pt-2 pb-4
+      px-5 pt-1 pb-4 flex flex-col
       ${
         complete
           ? `${colorScheme === "dark" ? "border-grey" : "border-grey/30"}`
           : `${colorScheme === "dark" ? "border-black" : "border-white/60"}`
       } ${TaskCardClassNames} ${customClassName}`}
     >
-      <View className="h-[100px] flex flex-row">
-        <View className="basis-1/2">
-          <StreakCard customClassName="h-full" streak={10} />
-        </View>
-        <View className="basis-1/2">
-          <StreakCard customClassName="h-full" streak={10} />
-        </View>
-      </View>
       <View className="mb-2">
-        <View className="flex-row items-center justify-center mb-2">
-          <View className="flex justify-center items-center border border-white/30 bg-light-red/50 rounded-full f h-[140px] w-[140px] p-6">
+        <View className="flex-row items-center justify-center my-4 bg-red w-full rounded-lg">
+          <View className="py-4 opacity-90">
             <YinYang
               color={colorScheme === "dark" ? "white" : "white"}
-              weight="fill"
+              weight="thin"
               size={110}
             />
           </View>
         </View>
-        <HeadingText text={task.title} customClassName="text-4xl mb-2" />
-        <BodyText text={task.description} />
+        <HeadingText text={task.title} customClassName="text-3xl mb-2" />
+        <BodyText text={task.description} customClassName="mb-2 opacity-80" />
+      </View>
+      <View className="flex flex-row justify-between">
+        <View className="flex flex-row">
+          <ClockIcon
+            size={20}
+            color={colorScheme === "dark" ? colorsStyles["grey"] : "black"}
+            className="text-black dark:text-white/60"
+          />
+          <BodyText
+            text="7:00 am - 8:00 am (1 hour)"
+            customClassName="ml-1.5 text-black dark:text-white/60"
+          />
+        </View>
+        <View className="flex flex-row">
+          <CalendarIcon
+            size={20}
+            color={colorScheme === "dark" ? colorsStyles["grey"] : "black"}
+          />
+          <BodyText
+            text="28 October 2023"
+            customClassName="ml-1.5 text-black dark:text-white/60"
+          />
+        </View>
+        {/* <View className="basis-1/2">
+          <StreakCard customClassName="h-full" streak={10} />
+        </View>
+        <View className="basis-1/2">
+          <StreakCard customClassName="h-full" streak={10} />
+        </View> */}
       </View>
     </Card>
   );

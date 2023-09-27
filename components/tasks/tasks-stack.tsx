@@ -1,7 +1,9 @@
 import { useColorScheme } from "nativewind";
 import { useContext, useRef, useState } from "react";
+import { createRef } from "react";
 import { SafeAreaView, View } from "react-native";
 import Swiper from "react-native-deck-swiper";
+import { measure } from "react-native-reanimated";
 
 import { TasksLayoutProps } from "../../app/(tabs)/tasks";
 import GlobalClasses from "../../constants/styles/global.classes";
@@ -55,7 +57,7 @@ export default function TasksStack(props: TasksLayoutProps) {
                     completedTasksCount={completedTasksCount}
                     setCompletedTasksCount={setCompletedTasksCount}
                     cardType="large"
-                    customClassName={`${GlobalClasses.border}`}
+                    customClassName={`${GlobalClasses.border} h-fit`}
                   />
                 );
               }}
@@ -63,7 +65,7 @@ export default function TasksStack(props: TasksLayoutProps) {
           )}
         </View>
         <View className="basis-1/2">
-          <View className="items-center flex-row space-x-16 justify-center">
+          <View className="flex flex-row space-x-16 items-center justify-center">
             <View>
               <IncompleteButton
                 onPress={() => {

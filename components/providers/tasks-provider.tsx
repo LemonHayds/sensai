@@ -39,13 +39,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       completed: false,
       date: "2021-01-01",
       time: "12:00",
-      icon: (
-        <YinYang
-          weight="fill"
-          color={colorScheme === "dark" ? "white" : "black"}
-          size={25}
-        />
-      ),
+      icon: "yin-yang",
     },
     {
       id: 2,
@@ -55,13 +49,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       completed: false,
       date: "2021-01-01",
       time: "12:00",
-      icon: (
-        <Code
-          weight="fill"
-          color={colorScheme === "dark" ? "white" : "black"}
-          size={25}
-        />
-      ),
+      icon: "code",
     },
     {
       id: 3,
@@ -71,13 +59,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       completed: false,
       date: "2021-01-01",
       time: "12:00",
-      icon: (
-        <Alien
-          weight="fill"
-          color={colorScheme === "dark" ? "white" : "black"}
-          size={25}
-        />
-      ),
+      icon: "alien",
     },
     {
       id: 4,
@@ -87,13 +69,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       completed: false,
       date: "2021-01-01",
       time: "12:00",
-      icon: (
-        <Campfire
-          weight="fill"
-          color={colorScheme === "dark" ? "white" : "black"}
-          size={25}
-        />
-      ),
+      icon: "campfire",
     },
     {
       id: 5,
@@ -103,13 +79,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       completed: false,
       date: "2021-01-01",
       time: "12:00",
-      icon: (
-        <FilmStrip
-          weight="fill"
-          color={colorScheme === "dark" ? "white" : "black"}
-          size={25}
-        />
-      ),
+      icon: "film-strip",
     },
     {
       id: 6,
@@ -119,13 +89,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       completed: false,
       date: "2021-01-01",
       time: "12:00",
-      icon: (
-        <Lightbulb
-          weight="fill"
-          color={colorScheme === "dark" ? "white" : "black"}
-          size={25}
-        />
-      ),
+      icon: "lightbulb",
     },
   ];
 

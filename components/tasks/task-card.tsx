@@ -15,6 +15,7 @@ import { Card } from "../common/card";
 import GlassContainer from "../common/glass-container";
 import { BodyText, HeadingText } from "../common/text";
 import StreakCard from "../stats/streak-card";
+import { IconParser } from "../../constants/parsers/icons.parser";
 
 const TaskCardClassNames = `border-[1px] shadow-sm ${GlobalClasses.bg}`;
 
@@ -90,7 +91,7 @@ const TaskCardSmall = (props: TaskCardProps) => {
           <View className="flex-row items-center">
             <Animated.View sharedTransitionTag={`task.${task.id}.icon`}>
               <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
-                <View className="flex-row items-center">{task.icon}</View>
+                <IconParser iconKey={task.icon} size={20} />
               </GlassContainer>
             </Animated.View>
 
@@ -133,12 +134,8 @@ const TaskCardLarge = (props: TaskCardProps) => {
     >
       <View className="mb-2">
         <View className="flex-row items-center justify-center my-4 bg-red w-full rounded-lg">
-          <View className="py-4 opacity-90">
-            <YinYang
-              color={colorScheme === "dark" ? "white" : "white"}
-              weight="thin"
-              size={110}
-            />
+          <View className="py-4 opacity-90 m-auto">
+            <IconParser iconKey={task.icon} size={100} />
           </View>
         </View>
         <HeadingText text={task.title} customClassName="text-3xl mb-2" />

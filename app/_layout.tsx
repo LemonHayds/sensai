@@ -65,6 +65,14 @@ function RootLayoutNav() {
                   animation: "fade",
                 }}
               />
+              <Stack.Screen
+                name="edit-task"
+                options={{
+                  headerShown: false,
+                  presentation: "transparentModal",
+                  animation: "slide_from_bottom",
+                }}
+              />
             </Stack>
           </TasksProvider>
         </SettingsProvider>

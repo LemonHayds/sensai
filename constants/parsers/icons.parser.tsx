@@ -81,6 +81,7 @@ import {
 } from "phosphor-react-native";
 //General
 import {
+  CheckSquare,
   Alarm,
   Alien,
   At,
@@ -428,6 +429,10 @@ export const IconParser = (props: IconParserProps) => {
       iconElement = <Wine color={color} size={size} weight={weight} />;
       break;
 
+    case "check-square":
+      iconElement = <CheckSquare color={color} size={size} weight={weight} />;
+      break;
+
     case "alarm":
       iconElement = <Alarm color={color} size={size} weight={weight} />;
       break;
@@ -611,7 +616,7 @@ export const IconParser = (props: IconParserProps) => {
       break;
 
     default:
-      iconElement = <></>;
+      iconElement = <CheckSquare color={color} size={size} weight={weight} />;
   }
 
   return <>{iconElement}</>;

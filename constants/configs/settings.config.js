@@ -10,16 +10,18 @@ export const settingsConfig = [
     label: "Font Style",
     type: "select",
     default: "default",
-    selectItems: [
-      {
-        label: "Default",
-        value: "default",
-      },
-      {
-        label: "Modern",
-        value: "modern",
-      },
-    ],
+    inputOptions: {
+      selectItems: [
+        {
+          label: "Default",
+          value: "default",
+        },
+        {
+          label: "Modern",
+          value: "modern",
+        },
+      ],
+    },
   },
   {
     key: "favourite-color",

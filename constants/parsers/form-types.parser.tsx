@@ -1,13 +1,17 @@
 import { Switch } from "react-native";
-import { FormItemType } from "../../types/form-item.type";
-
 //TEST COMPONENTS
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+//Custom form components
+import ColorPicker from "../../components/common/form/color-picker";
+import Text from "../../components/common/form/text";
+import { HeadingText } from "../../components/common/text";
 import { BodyText } from "../../components/common/text";
+import { FormItemType } from "../../types/form-item.type";
 
 export const FormTypesParser = (props: FormTypesParserProps) => {
   const {
-    customClassName = "flex-row justify-between items-center h-[30px] mb-2",
+    customClassName = "flex-col space-y-1.5 items-start h-[30px] mb-2",
     showLabel = true,
     label,
     itemKey,
@@ -23,25 +27,34 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
       formElement = (
         <Switch
           value={value}
-          onValueChange={(newValue: boolean) => onChange(itemKey, newValue)}
+          onValueChange={(newValue: boolean) => onChange(newValue)}
         />
       );
       break;
 
+    case "text":
+      formElement = formElement = (
+        <Text
+          key={itemKey}
+          value={value}
+          onChange={onChange}
+          customClassName="w-full"
+        />
+      );
+
     case "colorPicker":
       formElement = (
-        <View>
-          <Text>Color Picker</Text>
-        </View>
+        <ColorPicker
+          key={itemKey}
+          value={value}
+          onChange={onChange}
+          customClassName="w-full"
+        />
       );
       break;
 
     case "select":
-      formElement = (
-        <View>
-          <Text>Select</Text>
-        </View>
-      );
+      formElement = <View>{/* <Text>Select</Text> */}</View>;
       break;
 
     default:
@@ -49,9 +62,9 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
   }
 
   return (
-    <View className={customClassName} id={itemKey}>
-      {showLabel && label && <BodyText text={label} />}
-      {formElement}
+    <View className={`${customClassName}`} id={itemKey}>
+      <View>{showLabel && label && <BodyText text={label} />}</View>
+      <View className="w-full">{formElement}</View>
     </View>
   );
 };
@@ -59,6 +72,6 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
 type FormTypesParserProps = {
   itemKey: string;
   showLabel?: boolean;
-  onChange: (key: string, value: any) => void;
+  onChange: (value: any) => void;
   customClassName?: string;
 } & FormItemType;

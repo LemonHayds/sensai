@@ -1,10 +1,9 @@
 import { useRouter } from "expo-router";
 import { useColorScheme } from "nativewind";
-import { YinYang } from "phosphor-react-native";
 import { useContext } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native";
-import { XMarkIcon } from "react-native-heroicons/solid";
+import { XMarkIcon, PencilIcon } from "react-native-heroicons/solid";
 import Animated from "react-native-reanimated";
 
 import BorderedButton from "../components/common/bordered-button";
@@ -13,6 +12,7 @@ import { BodyText, HeadingText } from "../components/common/text";
 import { TasksContext } from "../components/providers/tasks-provider";
 import GlobalClasses from "../constants/styles/global.classes";
 import TaskType from "../types/task.type";
+import { IconParser } from "../constants/parsers/icons.parser";
 
 export default function TaskDetail(props: TaskDetailProps) {
   const { selectedTask, setSelectedTask } = useContext(TasksContext);
@@ -24,38 +24,61 @@ export default function TaskDetail(props: TaskDetailProps) {
     setSelectedTask({});
   };
 
+  const handleEdit = () => {
+    router.push("/edit-task");
+  };
+
   const task = selectedTask as TaskType;
 
   return (
     <SafeAreaView className={`flex-1 ${GlobalClasses.bg}`}>
       <View className="relative">
         <View className="absolute top-[20px] right-[-310px] opacity-5">
-          <YinYang
-            color={colorScheme === "dark" ? "grey" : "black"}
-            weight="fill"
+          <IconParser
+            iconKey={task.icon}
             size={600}
+            color={colorScheme === "dark" ? "grey" : "black"}
           />
         </View>
         <View className="flex-row px-4 py-2 flex justify-between mb-2">
           <Animated.View sharedTransitionTag={`task.icon`}>
             <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
               <View className="flex-row items-center">
-                <YinYang
+                <IconParser
+                  iconKey={task.icon}
+                  size={28}
                   color={colorScheme === "dark" ? "white" : "black"}
-                  weight="fill"
                 />
               </View>
             </GlassContainer>
           </Animated.View>
-          <BorderedButton
-            onPress={handleClose}
-            customClassName="w-[35px] h-[35px]"
-            transparentButton={true}
-            filledBorder={true}
-            parentColor={GlobalClasses.bg}
-          >
-            <XMarkIcon color={colorScheme === "dark" ? "white" : "black"} />
-          </BorderedButton>
+          <View className="flex flex-row items-center justify-center space-x-4">
+            <View>
+              <BorderedButton
+                onPress={handleEdit}
+                customClassName="w-[35px] h-[35px]"
+                transparentButton={true}
+                filledBorder={true}
+                parentColor={GlobalClasses.bg}
+              >
+                <PencilIcon
+                  color={colorScheme === "dark" ? "white" : "black"}
+                  size={16}
+                />
+              </BorderedButton>
+            </View>
+            <View>
+              <BorderedButton
+                onPress={handleClose}
+                customClassName="w-[35px] h-[35px]"
+                transparentButton={true}
+                filledBorder={true}
+                parentColor={GlobalClasses.bg}
+              >
+                <XMarkIcon color={colorScheme === "dark" ? "white" : "black"} />
+              </BorderedButton>
+            </View>
+          </View>
         </View>
         {selectedTask && (
           <View className="px-4">

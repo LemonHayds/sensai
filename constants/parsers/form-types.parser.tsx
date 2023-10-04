@@ -3,8 +3,8 @@ import { Switch } from "react-native";
 import { View } from "react-native";
 
 //Custom form components
-import ColorPicker from "../../components/common/form/color-picker";
-import Text from "../../components/common/form/text";
+import ColorPicker from "../../components/form/color-picker";
+import Text from "../../components/form/text";
 import { HeadingText } from "../../components/common/text";
 import { BodyText } from "../../components/common/text";
 import { FormItemType } from "../../types/form-item.type";
@@ -33,7 +33,7 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
       break;
 
     case "text":
-      formElement = formElement = (
+      formElement = (
         <Text
           key={itemKey}
           value={value}
@@ -41,15 +41,18 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
           customClassName="w-full"
         />
       );
+      break;
 
     case "colorPicker":
       formElement = (
-        <ColorPicker
-          key={itemKey}
-          value={value}
-          onChange={onChange}
-          customClassName="w-full"
-        />
+        <View className="h-fit">
+          <ColorPicker
+            key={itemKey}
+            value={value}
+            onChange={onChange}
+            customClassName="w-full"
+          />
+        </View>
       );
       break;
 
@@ -63,7 +66,9 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
 
   return (
     <View className={`${customClassName}`} id={itemKey}>
-      <View>{showLabel && label && <BodyText text={label} />}</View>
+      <View className="mb-1.5">
+        {showLabel && label && <BodyText text={label} />}
+      </View>
       <View className="w-full">{formElement}</View>
     </View>
   );

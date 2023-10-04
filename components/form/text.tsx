@@ -1,7 +1,7 @@
 import { TextInput, View } from "react-native";
 
-import GlobalClasses from "../../../constants/styles/global.classes";
-import { FormItemType } from "../../../types/form-item.type";
+import GlobalClasses from "../../constants/styles/global.classes";
+import { FormItemType } from "../../types/form-item.type";
 
 const Text = (
   props: FormItemType & {

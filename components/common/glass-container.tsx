@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { useColorScheme } from "nativewind";
 
 export const GlassContainer = (props: GlassContainerProps) => {
-  const { children, customClassName } = props;
+  const { children, color, customClassName } = props;
   const { colorScheme } = useColorScheme();
 
   return (
@@ -10,7 +10,8 @@ export const GlassContainer = (props: GlassContainerProps) => {
       className={`flex-row items-center justify-center relative ${customClassName}`}
     >
       <View
-        className={`bg-light-red rounded-lg backdrop-filter backdrop-blur-xl w-full h-full ${
+        style={{ backgroundColor: color }}
+        className={`rounded-lg backdrop-filter backdrop-blur-xl w-full h-full ${
           colorScheme === "dark" ? "opacity-30" : "opacity-20"
         }`}
       ></View>
@@ -22,6 +23,7 @@ export const GlassContainer = (props: GlassContainerProps) => {
 export default GlassContainer;
 
 type GlassContainerProps = {
+  color?: string;
   children: React.ReactNode;
   customClassName?: string;
 };

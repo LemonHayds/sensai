@@ -20,17 +20,6 @@ export default function Tasks() {
     currentTasks = tasks as TaskType[];
   }
 
-  const [modal, setModal] = useState({ modal: null });
-
-  // const openTaskModal = (position: any) => {
-  //   //@ts-ignore
-  //   setModal({ icon: selectedTask.icon, position });
-  // };
-
-  // const closeTaskModal = () => {
-  //   setModal({ modal: null });
-  // };
-
   const handleCardTap = (task: any) => {
     setSelectedTask(task);
     router.push("/task-detail");

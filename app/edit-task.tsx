@@ -81,9 +81,9 @@ export default function EditTask(props: EditTaskProps) {
                 onChange={(value: any) => {
                   handleEditTask(item.key, value);
                 }}
+                customClassName="mb-4"
               />
             )}
-            ItemSeparatorComponent={() => <View style={{ height: 35 }} />}
           />
         </View>
       </View>

@@ -1,4 +1,5 @@
 import { useColorScheme } from "nativewind";
+import { useContext } from "react";
 //Activities
 import {
   Campfire,

@@ -1,12 +1,4 @@
-import {
-  Alien,
-  Campfire,
-  Code,
-  FilmStrip,
-  Lightbulb,
-  YinYang,
-} from "phosphor-react-native";
-import { createContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useState, ReactNode } from "react";
 import TaskType from "../../types/task.type";
 import { useColorScheme } from "nativewind";
 
@@ -40,6 +32,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       date: "2021-01-01",
       time: "12:00",
       icon: "yin-yang",
+      color: "icon-purple",
     },
     {
       id: 2,
@@ -50,6 +43,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       date: "2021-01-01",
       time: "12:00",
       icon: "code",
+      color: "icon-purple",
     },
     {
       id: 3,
@@ -60,6 +54,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       date: "2021-01-01",
       time: "12:00",
       icon: "alien",
+      color: "icon-red",
     },
     {
       id: 4,
@@ -70,6 +65,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       date: "2021-01-01",
       time: "12:00",
       icon: "campfire",
+      color: "icon-yellow",
     },
     {
       id: 5,
@@ -80,6 +76,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       date: "2021-01-01",
       time: "12:00",
       icon: "film-strip",
+      color: "icon-blue",
     },
     {
       id: 6,
@@ -90,6 +87,7 @@ const TasksProvider = ({ children }: { children: ReactNode }) => {
       date: "2021-01-01",
       time: "12:00",
       icon: "lightbulb",
+      color: "icon-green",
     },
   ];
 

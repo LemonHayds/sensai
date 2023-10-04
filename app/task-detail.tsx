@@ -13,6 +13,8 @@ import { TasksContext } from "../components/providers/tasks-provider";
 import GlobalClasses from "../constants/styles/global.classes";
 import TaskType from "../types/task.type";
 import { IconParser } from "../constants/parsers/icons.parser";
+import { getColorByKey } from "../utils/common.utils";
+import IconContainer from "../components/common/icon-container";
 
 export default function TaskDetail(props: TaskDetailProps) {
   const { selectedTask, setSelectedTask } = useContext(TasksContext);
@@ -42,15 +44,19 @@ export default function TaskDetail(props: TaskDetailProps) {
         </View>
         <View className="flex-row px-4 py-2 flex justify-between mb-2">
           <Animated.View sharedTransitionTag={`task.icon`}>
-            <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
-              <View className="flex-row items-center">
-                <IconParser
-                  iconKey={task.icon}
-                  size={28}
-                  color={colorScheme === "dark" ? "white" : "black"}
-                />
-              </View>
-            </GlassContainer>
+            {/* <GlassContainer customClassName="mr-3 w-[40px] h-[40px]"> */}
+
+            <IconContainer
+              //@ts-ignore
+              color={getColorByKey(selectedTask.color || "")}
+              customClassName="mr-3 w-[40px] h-[40px]"
+            >
+              <IconParser
+                iconKey={task.icon}
+                size={28}
+                color={colorScheme === "dark" ? "white" : "black"}
+              />
+            </IconContainer>
           </Animated.View>
           <View className="flex flex-row items-center justify-center space-x-4">
             <View>

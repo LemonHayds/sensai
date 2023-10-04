@@ -1,22 +1,18 @@
 import { useColorScheme } from "nativewind";
-import { YinYang } from "phosphor-react-native";
-import { createRef, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
 import { CheckIcon } from "react-native-heroicons/mini";
 import { CalendarIcon, ClockIcon } from "react-native-heroicons/mini";
-import Animated from "react-native-reanimated";
-import { measure } from "react-native-reanimated";
 
 import colorsStyles from "../../constants/styles/colors.styles";
 import GlobalClasses from "../../constants/styles/global.classes";
 import TaskType from "../../types/task.type";
 import BorderedButton from "../common/bordered-button";
 import { Card } from "../common/card";
-import GlassContainer from "../common/glass-container";
 import { BodyText, HeadingText } from "../common/text";
-import StreakCard from "../stats/streak-card";
 import { IconParser } from "../../constants/parsers/icons.parser";
-
+import IconContainer from "../common/icon-container";
+import { getColorByKey } from "../../utils/common.utils";
 const TaskCardClassNames = `border-[1px] shadow-sm ${GlobalClasses.bg}`;
 
 export const TaskCard = (props: TaskCardLayoutProps) => {
@@ -89,11 +85,9 @@ const TaskCardSmall = (props: TaskCardProps) => {
       <TouchableWithoutFeedback onPress={() => handleCardTap(task)}>
         <View className="flex-row justify-between">
           <View className="flex-row items-center">
-            <Animated.View sharedTransitionTag={`task.${task.id}.icon`}>
-              <GlassContainer customClassName="mr-3 w-[40px] h-[40px]">
-                <IconParser iconKey={task.icon} size={20} />
-              </GlassContainer>
-            </Animated.View>
+            <IconContainer color={getColorByKey(task.color || "")}>
+              <IconParser iconKey={task.icon} size={25} />
+            </IconContainer>
 
             <View className="flex-col justify-start items-start">
               <HeadingText text={task.title} customClassName="text-[16px]" />

@@ -8,8 +8,6 @@ import { FlatList } from "react-native";
 import { CheckIcon, ChevronDoubleDownIcon } from "react-native-heroicons/solid";
 
 import BorderedButton from "../components/common/bordered-button";
-import GlassContainer from "../components/common/glass-container";
-import { BodyText, HeadingText } from "../components/common/text";
 import { TasksContext } from "../components/providers/tasks-provider";
 import { taskConfig } from "../constants/configs/task.config";
 import { FormTypesParser } from "../constants/parsers/form-types.parser";
@@ -35,40 +33,41 @@ export default function EditTask(props: EditTaskProps) {
   };
 
   return (
-    <SafeAreaView
-      className={`flex-1 ${GlobalClasses.bg} mt-[120px] shadow-lg border-t ${GlobalClasses.border}`}
+    <View
+      className={`h-full flex-1 ${GlobalClasses.bg} mt-[120px] shadow-lg border-t ${GlobalClasses.border}`}
     >
       <View className="relative px-4 py-4">
-        <View className="flex-row flex justify-between mb-4">
-          <View className="flex flex-row items-center justify-between w-full">
-            <BorderedButton
-              onPress={handleBack}
-              customClassName="w-[35px] h-[35px]"
-              transparentButton={true}
-              filledBorder={true}
-              parentColor={GlobalClasses.bg}
-            >
-              <ChevronDoubleDownIcon
-                color={colorScheme === "dark" ? "white" : "black"}
-                size={18}
-              />
-            </BorderedButton>
-            <BorderedButton
-              onPress={handleBack}
-              customClassName="w-[35px] h-[35px]"
-              transparentButton={true}
-              filledBorder={true}
-              parentColor={GlobalClasses.bg}
-            >
-              <CheckIcon
-                color={colorScheme === "dark" ? "white" : "black"}
-                size={18}
-              />
-            </BorderedButton>
-          </View>
-        </View>
         <View className="h-full">
+          <View className="flex-row flex justify-between mb-4">
+            <View className="flex flex-row items-center justify-between w-full">
+              <BorderedButton
+                onPress={handleBack}
+                customClassName="w-[35px] h-[35px]"
+                transparentButton={true}
+                filledBorder={true}
+                parentColor={GlobalClasses.bg}
+              >
+                <ChevronDoubleDownIcon
+                  color={colorScheme === "dark" ? "white" : "black"}
+                  size={18}
+                />
+              </BorderedButton>
+              <BorderedButton
+                onPress={handleBack}
+                customClassName="w-[35px] h-[35px]"
+                transparentButton={true}
+                filledBorder={true}
+                parentColor={GlobalClasses.bg}
+              >
+                <CheckIcon
+                  color={colorScheme === "dark" ? "white" : "black"}
+                  size={18}
+                />
+              </BorderedButton>
+            </View>
+          </View>
           <FlatList
+            showsVerticalScrollIndicator={false}
             data={taskConfig}
             keyExtractor={(item: FormItemType) => item.key}
             renderItem={({ item }) => (
@@ -87,7 +86,7 @@ export default function EditTask(props: EditTaskProps) {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

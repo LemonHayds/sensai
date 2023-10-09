@@ -46,12 +46,10 @@ const Settings = () => {
             type={item.type}
             label={item.label}
             value={item.value}
-            onChange={(key: string, value: any) =>
-              handleSettingsChange(key, value)
-            }
+            onChange={(value: any) => handleSettingsChange(item.key, value)}
+            customClassName="mb-4"
           />
         )}
-        ItemSeparatorComponent={() => <View style={{ height: 15 }} />}
       />
     </View>
   );

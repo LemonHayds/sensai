@@ -2,7 +2,7 @@ import { useColorScheme } from "nativewind";
 import { CheckIcon } from "react-native-heroicons/mini";
 
 import colorsStyles from "../../constants/styles/colors.styles";
-import Button from "../common/button";
+import Button from "../common/bouncy-button";
 
 const ComletedButton = (props: { onPress: () => void }) => {
   const { colorScheme } = useColorScheme();

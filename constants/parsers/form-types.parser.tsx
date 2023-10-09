@@ -4,6 +4,7 @@ import { View } from "react-native";
 
 //Custom form components
 import ColorPicker from "../../components/form/color-picker";
+import IconPicker from "../../components/form/icon-picker";
 import Text from "../../components/form/text";
 import { HeadingText } from "../../components/common/text";
 import { BodyText } from "../../components/common/text";
@@ -40,6 +41,19 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
           onChange={onChange}
           customClassName="w-full"
         />
+      );
+      break;
+
+    case "iconPicker":
+      formElement = (
+        <View className="h-fit">
+          <IconPicker
+            key={itemKey}
+            value={value}
+            onChange={onChange}
+            customClassName="w-full"
+          />
+        </View>
       );
       break;
 

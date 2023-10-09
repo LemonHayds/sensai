@@ -1,17 +1,5 @@
 export const taskConfig = [
   {
-    key: "icon",
-    label: "Icon",
-    type: "iconPicker",
-    default: "check-square",
-  },
-  {
-    key: "color",
-    label: "Color",
-    type: "colorPicker",
-    default: "task-red",
-  },
-  {
     key: "title",
     label: "Title",
     type: "text",
@@ -30,9 +18,24 @@ export const taskConfig = [
     },
   },
   {
+    key: "color",
+    label: "Color",
+    type: "colorPicker",
+    default: "task-red",
+  },
+  {
+    key: "icon",
+    label: "Icon",
+    type: "iconPicker",
+    default: "check-square",
+  },
+  {
     key: "days",
     label: "days",
     type: "daysPicker",
+    inputOptions: {
+      multiple: true,
+    },
     default: [1, 2, 3, 4, 5, 6, 7],
   },
   {

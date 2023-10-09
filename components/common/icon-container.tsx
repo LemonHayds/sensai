@@ -8,7 +8,7 @@ const IconContainer = (props: {
   return (
     <GlassContainer
       color={props.color}
-      customClassName={`mr-3 ${props.customClassName || "w-[40px] h-[40px]"}`}
+      customClassName={`${props.customClassName || "mr-3 w-[40px] h-[40px]"}`}
     >
       {props.children}
     </GlassContainer>

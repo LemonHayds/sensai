@@ -27,16 +27,22 @@ export const taskConfig = [
     default: [],
   },
   {
-    key: "time",
-    label: "Time",
-    type: "timePicker",
-    default: "06:00",
-  },
-  {
-    key: "reminders",
-    label: "Reminders",
-    type: "toggle",
-    default: true,
+    type: "multiple",
+    key: "time-and-reminders",
+    elements: [
+      {
+        key: "time",
+        label: "Time",
+        type: "timePicker",
+        default: "06:00",
+      },
+      {
+        key: "reminders",
+        label: "Reminders",
+        type: "toggle",
+        default: true,
+      },
+    ],
   },
   {
     key: "color",

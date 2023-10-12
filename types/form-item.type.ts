@@ -4,6 +4,7 @@ export type FormItemType = {
   type?: string;
   default?: any;
   value?: any;
+  elements?: any[];
   inputOptions?: {
     required?: boolean;
     numberOfLines?: number;

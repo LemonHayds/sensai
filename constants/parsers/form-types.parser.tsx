@@ -21,83 +21,130 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
     type,
     inputOptions,
     onChange,
+    multipleElements,
   } = props;
 
-  let formElement = <></>;
+  const getMultipleFormElements = (type: string) => {
+    return getFormElement(type);
+  };
 
-  switch (type) {
-    case "toggle":
-      formElement = (
-        <Switch
-          value={value}
-          onValueChange={(newValue: boolean) => onChange(newValue)}
-        />
-      );
-      break;
+  const getFormElement = (type: string) => {
+    switch (type) {
+      case "multiple":
+        if (!multipleElements || typeof multipleElements === "boolean")
+          return <></>;
 
-    case "text":
-      formElement = (
-        <Text
-          key={itemKey}
-          value={value}
-          onChange={onChange}
-          customClassName="w-full"
-          inputOptions={inputOptions}
-        />
-      );
-      break;
+        const elements = multipleElements;
+        const formElements = [];
 
-    case "iconPicker":
-      formElement = (
-        <View className="h-fit">
-          <IconPicker
+        elements.forEach((element: FormItemType) => {
+          if (element.type && element.type !== "multiple") {
+            formElements.push(getMultipleFormElements(element.type));
+          }
+        });
+
+        return (
+          <View className="flex flex-row gap-2 items-center w-full">
+            {elements.map((element: FormItemType) => {
+              return (
+                <View
+                  className={`flex flex-col items-start h-full
+                  ${elements.length === 2 ? "w-1/2" : "w-1/3"}
+                `}
+                >
+                  <FormLabel
+                    label={element.label}
+                    customClassName="mb-1.5 top-0"
+                  />
+                  {element.type && getMultipleFormElements(element.type)}
+                </View>
+              );
+            })}
+          </View>
+        );
+
+      case "toggle":
+        return (
+          <Switch
+            value={value}
+            onValueChange={(newValue: boolean) => onChange(newValue)}
+          />
+        );
+
+      case "text":
+        return (
+          <Text
+            key={itemKey}
+            value={value}
+            onChange={onChange}
+            customClassName="w-full"
+            inputOptions={inputOptions}
+          />
+        );
+
+      case "iconPicker":
+        return (
+          <View className="h-fit">
+            <IconPicker
+              key={itemKey}
+              value={value}
+              onChange={onChange}
+              customClassName="w-full"
+            />
+          </View>
+        );
+
+      case "colorPicker":
+        return (
+          <View className="h-fit">
+            <ColorPicker
+              key={itemKey}
+              value={value}
+              onChange={onChange}
+              customClassName="w-full"
+            />
+          </View>
+        );
+
+      case "select":
+        return <View>{/* <Text>Select</Text> */}</View>;
+
+      case "daysPicker":
+        return (
+          <DaysPicker
             key={itemKey}
             value={value}
             onChange={onChange}
             customClassName="w-full"
           />
-        </View>
-      );
-      break;
+        );
 
-    case "colorPicker":
-      formElement = (
-        <View className="h-fit">
-          <ColorPicker
-            key={itemKey}
-            value={value}
-            onChange={onChange}
-            customClassName="w-full"
-          />
-        </View>
-      );
-      break;
+      default:
+        return <></>;
+    }
+  };
 
-    case "select":
-      formElement = <View>{/* <Text>Select</Text> */}</View>;
-      break;
+  if (!type) return <></>;
 
-    case "daysPicker":
-      formElement = (
-        <DaysPicker
-          key={itemKey}
-          value={value}
-          onChange={onChange}
-          customClassName="w-full"
-        />
-      );
-      break;
-
-    default:
-      formElement = <></>;
-  }
+  let formElement = getFormElement(type);
 
   return (
     <View className={`${customClassName}`} id={itemKey}>
-      <View className="mb-1.5">
-        {showLabel && label && <BodyText text={label} />}
-      </View>
+      {showLabel && label && (
+        <FormLabel label={label} customClassName="mb-1.5" />
+      )}
       <View className="w-full">{formElement}</View>
+    </View>
+  );
+};
+
+export const FormLabel = (props: {
+  label?: string;
+  customClassName?: string;
+}) => {
+  return (
+    <View className={props.customClassName}>
+      <BodyText text={props.label} />
     </View>
   );
 };
@@ -107,4 +154,5 @@ type FormTypesParserProps = {
   showLabel?: boolean;
   onChange: (value: any) => void;
   customClassName?: string;
+  multipleElements?: FormItemType[] | boolean;
 } & FormItemType;

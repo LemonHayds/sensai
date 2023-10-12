@@ -77,6 +77,7 @@ export default function EditTask(props: EditTaskProps) {
                 type={item.type}
                 label={item.label}
                 value={formState[item.key]}
+                multipleElements={item.elements || false}
                 onChange={(value: any) => {
                   handleEditTask(item.key, value);
                 }}

@@ -1,5 +1,5 @@
 import { TextInput, View } from "react-native";
-
+import { useState } from "react";
 import GlobalClasses from "../../constants/styles/global.classes";
 import { FormItemType } from "../../types/form-item.type";
 
@@ -9,6 +9,8 @@ const Text = (
     customClassName?: string;
   }
 ) => {
+  const isMultiline = props?.inputOptions?.multiline || false;
+  const [height, updateHeight] = useState(40);
   return (
     <View className={props.customClassName}>
       <TextInput
@@ -19,11 +21,16 @@ const Text = (
         }}
         onSubmitEditing={() => {}}
         style={{
-          height: 40,
-          padding: 0,
+          height: isMultiline ? height : 40,
+          padding: 10,
           marginBottom: 0,
-          paddingHorizontal: 10,
         }}
+        editable={true}
+        multiline={isMultiline}
+        onContentSizeChange={(e) =>
+          updateHeight(e.nativeEvent.contentSize.height)
+        }
+        // autoGrow={true}
         className={`bg-light-paper dark:bg-light-black text-black dark:text-white h-full rounded-md border ${GlobalClasses.border}`}
       />
     </View>

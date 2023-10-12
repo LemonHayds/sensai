@@ -80,6 +80,7 @@ export default function EditTask(props: EditTaskProps) {
                 onChange={(value: any) => {
                   handleEditTask(item.key, value);
                 }}
+                inputOptions={item.inputOptions}
                 customClassName="mb-4"
               />
             )}

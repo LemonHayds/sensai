@@ -14,29 +14,17 @@ export const taskConfig = [
     type: "text",
     inputOptions: {
       placeholder: "Enter description",
-      numberOfLines: 4,
+      multiline: true,
     },
   },
   {
-    key: "color",
-    label: "Color",
-    type: "colorPicker",
-    default: "task-red",
-  },
-  {
-    key: "icon",
-    label: "Icon",
-    type: "iconPicker",
-    default: "check-square",
-  },
-  {
     key: "days",
-    label: "days",
+    label: "Days",
     type: "daysPicker",
     inputOptions: {
       multiple: true,
     },
-    default: [1, 2, 3, 4, 5, 6, 7],
+    default: [],
   },
   {
     key: "time",
@@ -50,7 +38,18 @@ export const taskConfig = [
     type: "toggle",
     default: true,
   },
-
+  {
+    key: "color",
+    label: "Color",
+    type: "colorPicker",
+    default: "task-red",
+  },
+  {
+    key: "icon",
+    label: "Icon",
+    type: "iconPicker",
+    default: "check-square",
+  },
   //Pro Plan
   {
     key: "reminder-message",

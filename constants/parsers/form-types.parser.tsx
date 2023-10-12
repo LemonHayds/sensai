@@ -6,6 +6,7 @@ import { View } from "react-native";
 import ColorPicker from "../../components/form/color-picker";
 import IconPicker from "../../components/form/icon-picker";
 import Text from "../../components/form/text";
+import DaysPicker from "../../components/form/days-picker";
 import { HeadingText } from "../../components/common/text";
 import { BodyText } from "../../components/common/text";
 import { FormItemType } from "../../types/form-item.type";
@@ -18,6 +19,7 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
     itemKey,
     value,
     type,
+    inputOptions,
     onChange,
   } = props;
 
@@ -40,6 +42,7 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
           value={value}
           onChange={onChange}
           customClassName="w-full"
+          inputOptions={inputOptions}
         />
       );
       break;
@@ -72,6 +75,17 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
 
     case "select":
       formElement = <View>{/* <Text>Select</Text> */}</View>;
+      break;
+
+    case "daysPicker":
+      formElement = (
+        <DaysPicker
+          key={itemKey}
+          value={value}
+          onChange={onChange}
+          customClassName="w-full"
+        />
+      );
       break;
 
     default:

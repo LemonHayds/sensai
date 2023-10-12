@@ -9,5 +9,6 @@ export type FormItemType = {
     numberOfLines?: number;
     placeholder?: string;
     selectOptions?: any[];
+    multiline?: boolean;
   };
 };

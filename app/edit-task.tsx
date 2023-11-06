@@ -3,7 +3,6 @@ import { useColorScheme } from "nativewind";
 import { useContext } from "react";
 import { useState } from "react";
 import { View } from "react-native";
-import { SafeAreaView } from "react-native";
 import { FlatList } from "react-native";
 import { CheckIcon, ChevronDoubleDownIcon } from "react-native-heroicons/solid";
 

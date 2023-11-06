@@ -15,6 +15,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
+    "@react-native-community/datetimepicker": "7.2.0",
     "@react-spring/native": "^9.5.5",
     "expo": "~49.0.8",
     "expo-blur": "~12.4.1",
@@ -38,8 +39,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-shared-element": "^0.8.8",
     "react-native-svg": "13.9.0",
-    "react-native-web": "~0.19.6",
-    "react-time-picker": "^6.5.1"
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

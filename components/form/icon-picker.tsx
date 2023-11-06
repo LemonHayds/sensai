@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native";
+import { icons } from "../../constants/icons";
 
 import { FormItemType } from "../../types/form-item.type";
-import { IconParser } from "../../constants/parsers/icons.parser";
-import { BodyText } from "../common/text";
 import Button from "../common/button";
-
-const getIcons = () => {
-  return IconParser({ returnAll: true });
-};
+import { BodyText } from "../common/text";
 
 const IconPicker = (
   props: FormItemType & {
@@ -17,8 +13,6 @@ const IconPicker = (
     customClassName?: string;
   }
 ) => {
-  const icons = getIcons();
-
   const [selectedIcon, setSelectedIcon] = useState(props.value);
   const [showMore, setShowMore] = useState(false);
 

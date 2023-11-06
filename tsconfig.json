@@ -10,6 +10,7 @@
     "expo-env.d.ts",
     "constants/styles/colors.styles.js",
     "constants/text-styles.js",
-    "constants/configs/settings.config.js"
+    "constants/configs/settings.config.js",
+    "constants/icons.js"
   ]
 }

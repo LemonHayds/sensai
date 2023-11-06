@@ -2,13 +2,14 @@ import { Switch } from "react-native";
 //TEST COMPONENTS
 import { View } from "react-native";
 
-//Custom form components
-import ColorPicker from "../../components/form/color-picker";
-import IconPicker from "../../components/form/icon-picker";
-import Text from "../../components/form/text";
-import DaysPicker from "../../components/form/days-picker";
 import { HeadingText } from "../../components/common/text";
 import { BodyText } from "../../components/common/text";
+//Custom form components
+import ColorPicker from "../../components/form/color-picker";
+import DaysPicker from "../../components/form/days-picker";
+import IconPicker from "../../components/form/icon-picker";
+import Text from "../../components/form/text";
+import CustomTimePicker from "../../components/form/time-picker";
 import { FormItemType } from "../../types/form-item.type";
 
 export const FormTypesParser = (props: FormTypesParserProps) => {
@@ -119,6 +120,18 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
           />
         );
 
+      case "timePicker":
+        return (
+          <View key={itemKey}>
+            <CustomTimePicker
+              key={itemKey}
+              value={value}
+              onChange={onChange}
+              customClassName="w-full"
+            />
+          </View>
+        );
+
       default:
         return <></>;
     }
@@ -129,7 +142,7 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
   let formElement = getFormElement(type);
 
   return (
-    <View className={`${customClassName}`} id={itemKey}>
+    <View key={itemKey} className={`${customClassName}`} id={itemKey}>
       {showLabel && label && (
         <FormLabel label={label} customClassName="mb-1.5" />
       )}

@@ -5,14 +5,13 @@ import { View } from "react-native";
 import { SafeAreaView } from "react-native";
 import { XMarkIcon, PencilIcon } from "react-native-heroicons/solid";
 import Animated from "react-native-reanimated";
-
+import IconParser from "../constants/parsers/icons.parser";
 import BorderedButton from "../components/common/bordered-button";
 import GlassContainer from "../components/common/glass-container";
 import { BodyText, HeadingText } from "../components/common/text";
 import { TasksContext } from "../components/providers/tasks-provider";
 import GlobalClasses from "../constants/styles/global.classes";
 import TaskType from "../types/task.type";
-import { IconParser } from "../constants/parsers/icons.parser";
 import { getColorByKey } from "../utils/common.utils";
 import IconContainer from "../components/common/icon-container";
 
@@ -40,7 +39,13 @@ export default function TaskDetail(props: TaskDetailProps) {
             iconKey={task.icon}
             size={600}
             color={colorScheme === "dark" ? "grey" : "black"}
+            returnAll={false}
           />
+          {/* <IconParser
+            iconKey={task.icon}
+            size={600}
+            color={colorScheme === "dark" ? "grey" : "black"}
+          /> */}
         </View>
         <View className="flex-row px-4 py-2 flex justify-between mb-2">
           <Animated.View sharedTransitionTag={`task.icon`}>

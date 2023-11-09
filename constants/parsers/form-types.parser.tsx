@@ -11,10 +11,12 @@ import IconPicker from "../../components/form/icon-picker";
 import Text from "../../components/form/text";
 import CustomTimePicker from "../../components/form/time-picker";
 import { FormItemType } from "../../types/form-item.type";
+import TaskType from "../../types/task.type";
 
 export const FormTypesParser = (props: FormTypesParserProps) => {
   const {
     customClassName = "flex-col space-y-1.5 items-start h-[30px] mb-2",
+    selectedTask,
     showLabel = true,
     label,
     itemKey,
@@ -87,9 +89,11 @@ export const FormTypesParser = (props: FormTypesParserProps) => {
         return (
           <View className="h-fit">
             <IconPicker
+              selectedIcon={selectedTask?.icon}
               key={itemKey}
               value={value}
               onChange={onChange}
+              inputOptions={inputOptions}
               customClassName="w-full"
             />
           </View>
@@ -165,6 +169,7 @@ export const FormLabel = (props: {
 type FormTypesParserProps = {
   itemKey: string;
   showLabel?: boolean;
+  selectedTask?: TaskType;
   onChange: (value: any) => void;
   customClassName?: string;
   multipleElements?: FormItemType[] | boolean;

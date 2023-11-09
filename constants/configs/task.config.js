@@ -55,6 +55,9 @@ export const taskConfig = [
     label: "Icon",
     type: "iconPicker",
     default: "check-square",
+    inputOptions: {
+      selectedIconFirst: true,
+    },
   },
   //Pro Plan
   {

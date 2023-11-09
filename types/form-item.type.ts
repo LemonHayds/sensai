@@ -8,6 +8,7 @@ export type FormItemType = {
   inputOptions?: {
     required?: boolean;
     numberOfLines?: number;
+    selectedIconFirst?: boolean;
     placeholder?: string;
     selectOptions?: any[];
     multiline?: boolean;

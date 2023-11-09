@@ -2,7 +2,8 @@ import { useState } from "react";
 import { View } from "react-native";
 import { TouchableWithoutFeedback } from "react-native";
 import { icons } from "../../constants/icons";
-
+import { IconWrapper } from "../../constants/parsers/icons.parser";
+import { useColorScheme } from "nativewind";
 import { FormItemType } from "../../types/form-item.type";
 import Button from "../common/button";
 import { BodyText } from "../common/text";
@@ -10,16 +11,35 @@ import { BodyText } from "../common/text";
 const IconPicker = (
   props: FormItemType & {
     onChange: (value: any) => void;
+    selectedIcon?: string;
     customClassName?: string;
   }
 ) => {
   const [selectedIcon, setSelectedIcon] = useState(props.value);
   const [showMore, setShowMore] = useState(false);
 
+  const { colorScheme } = useColorScheme();
+
   const handleIconChange = (key: string) => {
     setSelectedIcon(key);
     props.onChange(key);
   };
+
+  // if (Array.isArray(allIcons)) {
+  //   icons.forEach((group, index) => {
+  //     group.icons.forEach((icon, iIndex) => {
+  //       if (icon.key === selectedIcon) {
+  //         groupIndex = index;
+  //         iconIndex = iIndex;
+  //       }
+  //     });
+  //   });
+
+  //   if (groupIndex !== -1 && iconIndex !== -1) {
+  //     const selected = allIcons[groupIndex].icons.splice(iconIndex, 1)[0];
+  //     allIcons[0].icons.unshift(selected);
+  //   }
+  // }
 
   return (
     <View className={`${props.customClassName}`}>
@@ -54,7 +74,12 @@ const IconPicker = (
                           : ""
                       }
                     >
-                      {icon.component}
+                      <IconWrapper
+                        color={colorScheme === "dark" ? "white" : "black"}
+                        weight={selectedIcon === icon.key ? "fill" : "regular"}
+                      >
+                        {icon.component}
+                      </IconWrapper>
                     </IconPickerItem>
                   </View>
                 ))}

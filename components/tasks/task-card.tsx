@@ -129,7 +129,11 @@ const TaskCardLarge = (props: TaskCardProps) => {
       <View className="mb-2">
         <View className="flex-row items-center justify-center my-4 bg-red w-full rounded-lg">
           <View className="py-4 opacity-90 m-auto">
-            <IconParser iconKey={task.icon} size={100} />
+            <IconParser
+              iconKey={task.icon}
+              size={100}
+              color={colorScheme === "dark" ? "black" : "white"}
+            />
           </View>
         </View>
         <HeadingText text={task.title} customClassName="text-3xl mb-2" />
@@ -157,12 +161,6 @@ const TaskCardLarge = (props: TaskCardProps) => {
             customClassName="ml-1.5 text-black dark:text-white/60"
           />
         </View>
-        {/* <View className="basis-1/2">
-          <StreakCard customClassName="h-full" streak={10} />
-        </View>
-        <View className="basis-1/2">
-          <StreakCard customClassName="h-full" streak={10} />
-        </View> */}
       </View>
     </Card>
   );

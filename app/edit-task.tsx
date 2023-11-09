@@ -73,6 +73,7 @@ export default function EditTask(props: EditTaskProps) {
               <FormTypesParser
                 key={item.key}
                 itemKey={item.key}
+                selectedTask={task}
                 type={item.type}
                 label={item.label}
                 value={formState[item.key]}

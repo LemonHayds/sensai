@@ -7,7 +7,6 @@ import { XMarkIcon, PencilIcon } from "react-native-heroicons/solid";
 import Animated from "react-native-reanimated";
 import IconParser from "../constants/parsers/icons.parser";
 import BorderedButton from "../components/common/bordered-button";
-import GlassContainer from "../components/common/glass-container";
 import { BodyText, HeadingText } from "../components/common/text";
 import { TasksContext } from "../components/providers/tasks-provider";
 import GlobalClasses from "../constants/styles/global.classes";
@@ -39,18 +38,10 @@ export default function TaskDetail(props: TaskDetailProps) {
             iconKey={task.icon}
             size={600}
             color={colorScheme === "dark" ? "grey" : "black"}
-            returnAll={false}
           />
-          {/* <IconParser
-            iconKey={task.icon}
-            size={600}
-            color={colorScheme === "dark" ? "grey" : "black"}
-          /> */}
         </View>
         <View className="flex-row px-4 py-2 flex justify-between mb-2">
           <Animated.View sharedTransitionTag={`task.icon`}>
-            {/* <GlassContainer customClassName="mr-3 w-[40px] h-[40px]"> */}
-
             <IconContainer
               //@ts-ignore
               color={getColorByKey(selectedTask.color || "")}
